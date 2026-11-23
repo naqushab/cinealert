@@ -22,6 +22,19 @@ watches.json         what to watch + channels      state branch: state.json (per
 
 Measured on 23 Nov 2026 (Avengers: Doomsday, NCR, 4 format chips, 17–25 Dec): **16 requests, 929 shows, 44 cinemas.**
 
+## District source (verified live 23 Nov 2026: 842 shows, 6 requests for one language, 4 dates)
+`/movies/<slug>-movie-tickets-in-<city>-MV<id>` → `serverState.movieContents[id].languageFormatGroups` (language → fmtGrpId);
+`?frmtid=<fmtGrpId lowercased>` → `sessionDates`; `&fromdate=YYYY-MM-DD` → `movieSessions.*.arrangedSessions[].sessions[].areas[]`
+with `label, price, sAvail, sTotal, statusColor`. Status: 0 if `sAvail=0`, else G=3, Y=2, R=1.
+District has refused GitHub runners before (veerabahu, kyloprat repos). If it does, the health alert fires; there is no proxy fallback by design.
+Seat-layout pages (`/movies/seat-layout/<fmt>?encsessionid=...`) show "technical error" when opened directly (they need the booking flow), so alerts link to the date page instead.
+
+## Best seat / best show
+- **`rankShows`** (live today, both sources): ranks (show × seat class) by availability (exact ratio on District, status on BMS),
+  preferred class, and closeness to a preferred time. Powers `/best` and the ranked booking buttons in every alert.
+- **`minSeats`**: District alerts only when at least N seats are left in a matching class; `show` watches with `seats.count` use it as the fallback when no seat map exists.
+- **`findBestSeats`** (seat-level): ready, waiting for a seat-map source (below).
+
 ## Seats ("perfect seats")
 `findBestSeats(map, {count, areas, idealDepth, minDepth})` scores each block of N adjacent free seats:
 0.55 × centredness + 0.45 × closeness to the ideal depth (default 65% back; front 30% rejected). Aisles split blocks.
@@ -46,7 +59,7 @@ booking flow and Cloudflare, and none of the 7 reference repos has a working one
 | Phase | Scope |
 |---|---|
 | ✅ 0 | Core engine, BMS showtimes source, movie & show watches, Telegram / ntfy / email / webhook, GitHub Actions, tests, live-verified |
-| 1 | Telegram bot commands (`/add <link>`, `/list`, `/pause`), handled in the hourly run via `getUpdates` (no webhook hosting) |
-| 2 | Android app MVP: watch editor + on-device checks + local notifications |
-| 3 | Seat finder: WebView reader → `SeatMap` → `findBestSeats`; `SEATS_FOUND` alerts on device |
-| 4 | District source (`__NEXT_DATA__`, per-area seat counts), real recorded fixtures, more cities via the BMS regions API |
+| ✅ 1 | Telegram commands via `getUpdates` (+ optional listen window), District source with exact seat counts, `rankShows` / `/best`, `minSeats`, ranked booking buttons |
+| 2 | Android app: watch editor + on-device checks + local notifications (reuses `packages/core` incl. the bot command grammar) |
+| 3 | Seat-level finder: Android WebView reader → `SeatMap` → `findBestSeats`; `SEATS_FOUND` alerts |
+| 4 | Recorded real fixtures for contract tests, more cities via the BMS regions API, District city discovery |

@@ -20,7 +20,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -45,6 +45,9 @@ jobs:
           FETCHER: cffi
           STATE_DIR: .state
           ONLY_WATCH: ${{ inputs.only }}
+          # Seconds to keep answering Telegram commands live after the check (0 = reply on next run).
+          # Repo variable; e.g. 1500 on a public repo gives near-instant replies ~25 min of every hour.
+          BOT_LISTEN_SECONDS: ${{ vars.BOT_LISTEN_SECONDS || '0' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}

@@ -63,5 +63,6 @@ export function showMatches(w: Watch, show: Show, dates: Set<string>): boolean {
 export function categoryMatches(w: Watch, c: Category): boolean {
   if (w.categories?.length && !w.categories.some((x) => c.name.toLowerCase().includes(x.toLowerCase()))) return false;
   if (w.maxPrice && c.price > w.maxPrice) return false;
+  if (w.minSeats && c.seatsAvail !== undefined && c.seatsAvail < w.minSeats) return false;
   return true;
 }

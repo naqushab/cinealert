@@ -1,9 +1,21 @@
 {
   "dailySummaryHourIST": 20,
   "channels": {
-    "telegram": { "type": "telegram", "tokenEnv": "TELEGRAM_BOT_TOKEN", "chatIdsEnv": "TELEGRAM_CHAT_ID" },
-    "phone":    { "type": "ntfy", "topicEnv": "NTFY_TOPIC" },
-    "email":    { "type": "email", "apiKeyEnv": "RESEND_API_KEY", "fromEnv": "EMAIL_FROM", "toEnv": "EMAIL_TO" }
+    "telegram": {
+      "type": "telegram",
+      "tokenEnv": "TELEGRAM_BOT_TOKEN",
+      "chatIdsEnv": "TELEGRAM_CHAT_ID"
+    },
+    "phone": {
+      "type": "ntfy",
+      "topicEnv": "NTFY_TOPIC"
+    },
+    "email": {
+      "type": "email",
+      "apiKeyEnv": "RESEND_API_KEY",
+      "fromEnv": "EMAIL_FROM",
+      "toEnv": "EMAIL_TO"
+    }
   },
   "watches": [
     {
@@ -11,9 +23,30 @@
       "type": "movie",
       "label": "Avengers: Doomsday (English) · NCR",
       "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261217?etCodes=ET00526306&language=english&refEventCode=ET00526306",
-      "dates": ["2026-12-17..2026-12-25"],
-      "formats": ["IMAX", "PXL", "INFINITY_VISION"],
+      "dates": [
+        "2026-12-17..2026-12-25"
+      ],
+      "formats": [
+        "IMAX",
+        "PXL",
+        "INFINITY_VISION"
+      ],
       "cinemas": []
+    },
+    {
+      "id": "doomsday-ncr-district",
+      "type": "movie",
+      "label": "Avengers: Doomsday (English) · NCR",
+      "url": "https://www.district.in/movies/avengers-doomsday-movie-tickets-in-delhi-ncr-MV176735",
+      "language": "english",
+      "dates": [
+        "2026-12-17..2026-12-25"
+      ],
+      "formats": [
+        "4DX",
+        "PXL"
+      ],
+      "minSeats": 2
     },
     {
       "id": "example-one-show-recliner",
@@ -22,13 +55,30 @@
       "label": "Example: one cinema, one show, 2 good seats",
       "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261218",
       "cinema": "PVR: Logix",
-      "dates": ["2026-12-18"],
+      "dates": [
+        "2026-12-18"
+      ],
       "time": "19:30",
       "toleranceMinutes": 60,
-      "formats": ["IMAX"],
-      "categories": ["recliner", "prime"],
-      "seats": { "count": 2, "areas": ["recliner", "prime"], "minScore": 0.6 },
-      "channels": ["telegram", "phone"]
+      "formats": [
+        "IMAX"
+      ],
+      "categories": [
+        "recliner",
+        "prime"
+      ],
+      "seats": {
+        "count": 2,
+        "areas": [
+          "recliner",
+          "prime"
+        ],
+        "minScore": 0.6
+      },
+      "channels": [
+        "telegram",
+        "phone"
+      ]
     }
   ]
 }

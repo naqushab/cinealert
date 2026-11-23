@@ -6,7 +6,13 @@ export type AvailStatus = 0 | 1 | 2 | 3 | -1;
 
 export interface Region { code: string; slug: string; lat: string; lon: string; geohash: string; name: string }
 
-export interface Category { name: string; price: number; status: AvailStatus }
+export interface Category {
+  name: string;
+  price: number;
+  status: AvailStatus;
+  seatsAvail?: number;   // District gives exact counts; BMS does not
+  seatsTotal?: number;
+}
 
 export interface Show {
   venueCode: string;
@@ -25,7 +31,10 @@ export type DateState = "BOOKABLE" | "AVAILABLE" | "NOT_OPEN" | "UNKNOWN";
 export interface DateStatus { dateCode: string; status: DateState }
 export interface FormatChip { eventCode: string; title: string }
 
+export type SourceName = "bms" | "district";
+
 export interface Snapshot {
+  source?: SourceName;     // default "bms"
   eventCode: string;
   region: Region;
   movieName: string;
@@ -35,6 +44,9 @@ export interface Snapshot {
   complete: boolean;       // false when any upstream request failed -> never diff
   failures: string[];
   requests: number;
+  /** Booking links (source specific). Optional so hand-built snapshots in tests still work. */
+  showLink?: (s: Show) => string;
+  dateLink?: (dateCode: string) => string;
 }
 
 // ---------------- watches ----------------
@@ -63,6 +75,8 @@ export interface WatchBase {
   categories?: string[];      // seat class substrings, e.g. ["recliner"]
   maxPrice?: number;
   minStatus?: AvailStatus;    // default 1 (anything not sold out)
+  minSeats?: number;          // seats left in the class (District only; ignored where unknown)
+  language?: string;          // District language group, e.g. "english"
   channels?: string[];        // channel names from config; default all
 }
 
@@ -94,7 +108,8 @@ export interface Change {
   link: string;
 }
 
-export interface Notification { title: string; text: string; html: string; link: string; priority: "default" | "high" | "urgent" }
+export interface Button { text: string; url: string }
+export interface Notification { title: string; text: string; html: string; link: string; priority: "default" | "high" | "urgent"; buttons?: Button[] }
 
 export interface Notifier { name: string; send(n: Notification): Promise<void> }
 

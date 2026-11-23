@@ -2,7 +2,8 @@
 // No I/O here, so it runs unchanged in GitHub Actions, a server or the Android app.
 import type { Change, Snapshot, Watch, Show, Category } from "./types.ts";
 import { categoryMatches, expandDates, showMatches } from "./match.ts";
-import { buyUrl, parseBmsUrl, seatLayoutUrl } from "./url.ts";
+import { buyUrl, seatLayoutUrl } from "./url.ts";
+import { parseWatchUrl } from "./source.ts";
 
 export interface CatState { status: number; price: number; soldOutSince?: string }
 export interface WatchState {
@@ -18,8 +19,7 @@ export const emptyState = (): State => ({ watches: {}, health: { fails: 0, warne
 export const REOPEN_COOLDOWN_MS = 10 * 60_000;
 
 export function watchTarget(w: Watch) {
-  const u = parseBmsUrl(w.url);
-  return { ...u, citySlug: w.city || u.citySlug };
+  return parseWatchUrl(w.url, w.city);
 }
 
 export function diffWatch(w: Watch, snap: Snapshot, prev: WatchState | undefined, now: Date): { changes: Change[]; next: WatchState } {
@@ -30,7 +30,8 @@ export function diffWatch(w: Watch, snap: Snapshot, prev: WatchState | undefined
   const next: WatchState = { dates: [...old.dates], cats: {}, lastCheckedAt: now.toISOString() };
   const changes: Change[] = [];
   const nowIso = now.toISOString();
-  const link = (s: Show) => seatLayoutUrl(snap.region.slug, s.eventCode, s.venueCode, s.sessionId, s.dateCode);
+  const link = snap.showLink || ((s: Show) => seatLayoutUrl(snap.region.slug, s.eventCode, s.venueCode, s.sessionId, s.dateCode));
+  const dateLink = snap.dateLink || ((d: string) => buyUrl(snap.region.slug, t.movieSlug, snap.eventCode, d));
 
   const matched = snap.shows.filter((s) => showMatches(w, s, wanted));
   const openedDates = new Set<string>();
@@ -65,7 +66,7 @@ export function diffWatch(w: Watch, snap: Snapshot, prev: WatchState | undefined
   const dateChanges: Change[] = [];
   for (const d of [...openedDates].sort()) {
     if (!old.dates.includes(d)) {
-      dateChanges.push({ kind: "DATE_OPENED", watchId: w.id, dateCode: d, link: buyUrl(snap.region.slug, t.movieSlug, snap.eventCode, d) });
+      dateChanges.push({ kind: "DATE_OPENED", watchId: w.id, dateCode: d, link: dateLink(d) });
       next.dates.push(d);
     }
   }

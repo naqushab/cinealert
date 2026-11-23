@@ -1,11 +1,42 @@
 # CineAlert
 
-Watches BookMyShow for the movies, dates, cinemas, formats and seat classes you care about, and
+Watches **BookMyShow** and **District** for the movies, dates, cinemas, formats and seat classes you care about, and
 alerts you on **Telegram**, **phone push (ntfy)** and/or **email**. Runs free on **GitHub Actions**
 (hourly), with nothing to host and no machine of yours left running.
 
 - No build step: TypeScript run directly by Node ≥ 23.6. No npm dependencies.
 - `packages/core` is pure TS with no Node APIs, so the planned Android app (Expo / React Native) reuses it unchanged.
+
+## Telegram commands
+
+Talk to your bot (only chats listed in `TELEGRAM_CHAT_ID` are obeyed):
+
+| Command | Does |
+|---|---|
+| *(paste a BMS or District link)* | Watch it (same as `/add`) |
+| `/add <link> dates=17-12..25-12 formats=pxl,4dx cinemas="logix,mall of india" times=evening,night class=recliner seats=2 max=1500 lang=english` | Watch a movie (any or listed cinemas) |
+| `/show <link> cinema=PVLE time=19:30 seats=2 class=recliner dates=18-12` | Watch one cinema / one show time |
+| `/best <link> date=18-12 seats=2 class=recliner time=19:30 lang=english` | Rank the best shows to book **right now** |
+| `/inspect <link>` | Formats, open dates, cinema codes |
+| `/list` · `/pause <id>` · `/resume <id>` · `/remove <id>` | Manage watches (bot watches are `b1`, `b2`...; file watches can be paused) |
+
+**Reply speed.** Nothing is hosted, so commands are read when the workflow runs: on the next hourly run by default.
+Set the repo **variable** `BOT_LISTEN_SECONDS` (Settings → Secrets and variables → Actions → Variables) to keep
+listening after each check, e.g. `1500` = live replies for ~25 min of every hour. Do this on a public repo
+(free minutes); on a private repo it uses ~25 Actions minutes per run. Run the workflow by hand for an instant pass.
+Watches added from Telegram live in `bot.json` on the `state` branch.
+
+## Sources
+
+| | BookMyShow | District |
+|---|---|---|
+| Link | `in.bookmyshow.com/movies/<city>/<movie>/buytickets/ET...` | `district.in/movies/<movie>-movie-tickets-in-<city>-MV...` |
+| Data | showtimes API (JSON) | server-rendered page data |
+| Availability | status per seat class (sold out / almost full / filling fast / available) | **exact seats left** per class (`48/108 left`) |
+| Formats | chips (Infinity Vision, 4DX 3D, ICE 3D...) + screen labels (PXL) | screen format (`MS INFINITY VISION 4DX-3D`); `lang=` picks the language |
+| Booking link in alerts | straight to the show's **seat layout** | the date + language showtimes page (District's seat links don't open cold) |
+
+`minSeats` (`seats=` in commands) uses District's exact counts; BMS doesn't publish counts, so it's ignored there.
 
 ## Watch types
 
@@ -23,7 +54,8 @@ range `"2026-12-17..2026-12-25"`), `formats` / `excludeFormats`, `times` (`morni
 `MS - Inf Vsn 4DX 3D`, `MS InfVsn ICE 3D`). *Screen labels* sit on each show (`PXL`, `ATMOS`, `4DX`).
 A wanted format matches either level. Aliases: `IMAX, PXL, INFINITY_VISION, 4DX, SCREENX, ICE, EPIQ, DOLBY, INSIGNIA, 3D, 2D`.
 
-**Alerts:** 📅 date opened · 🆕 new show / seat class · 🔁 back after sold out (10-minute cooldown) ·
+**Alerts** come with up to 3 **ranked "book this" buttons** (best new shows for your preferences) plus "All shows" for opened dates, in Telegram, ntfy (action buttons) and email.
+Kinds: 📅 date opened · 🆕 new show / seat class · 🔁 back after sold out (10-minute cooldown) ·
 ⬆️ availability improved · 💺 good seats found (needs a seat map; see docs) · ⚠️ BMS blocking us / ✅ recovered · 🫡 daily summary.
 
 ## Set up (free, about 15 minutes)
