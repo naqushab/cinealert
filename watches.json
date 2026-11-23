@@ -49,6 +49,28 @@
       "minSeats": 2
     },
     {
+      "id": "doomsday-seats-noida-classes",
+      "type": "movie",
+      "label": "💺 Doomsday PXL/IMAX · back-half seat classes (stand-in for the seat-map watch)",
+      "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261217?language=english",
+      "cinemas": [
+        "DTYN",
+        "PVLE"
+      ],
+      "formats": [
+        "PXL",
+        "IMAX"
+      ],
+      "dates": [
+        "2026-12-17..2026-12-22"
+      ],
+      "categories": [
+        "XTRA LEGROOM",
+        "PRIME",
+        "RECLINER"
+      ]
+    },
+    {
       "id": "doomsday-dtyn-pxl-bms",
       "type": "movie",
       "label": "Doomsday PXL · PVR Superplex Mall of India (BMS)",
