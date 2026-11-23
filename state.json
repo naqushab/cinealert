@@ -99,7 +99,7 @@
           "price": 1500
         },
         "CIPS|12017|20261217|NORMAL": {
-          "status": 3,
+          "status": 2,
           "price": 1300
         },
         "CIPS|12020|20261217|NORMAL": {
@@ -123,7 +123,7 @@
           "price": 1400
         },
         "PVLE|80437|20261217|CLASSIC": {
-          "status": 3,
+          "status": 2,
           "price": 1600
         },
         "PVLE|80438|20261217|CLASSIC": {
@@ -731,12 +731,12 @@
           "status": 3,
           "price": 700
         },
-        "PAEG|59244|20261217|PICTURE PERFECT": {
+        "PAEG|59244|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 820,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PAEG|59244|20261217|XTRA LEGROOM": {
+        "PAEG|59244|20261217|PICTURE PERFECT": {
           "status": 0,
           "price": 820,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -750,15 +750,15 @@
           "status": 3,
           "price": 600
         },
-        "PAEG|59245|20261217|PICTURE PERFECT": {
-          "status": 0,
-          "price": 820,
-          "soldOutSince": "2026-11-23T11:52:13.692Z"
-        },
         "PAEG|59245|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 820,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PAEG|59245|20261217|PICTURE PERFECT": {
+          "status": 0,
+          "price": 820,
+          "soldOutSince": "2026-11-23T11:52:13.692Z"
         },
         "PAEG|59245|20261217|SUPERIOR": {
           "status": 0,
@@ -769,14 +769,14 @@
           "status": 3,
           "price": 600
         },
-        "PAEG|59246|20261217|XTRA LEGROOM": {
-          "status": 1,
-          "price": 1060
-        },
         "PAEG|59246|20261217|PICTURE PERFECT": {
           "status": 0,
           "price": 1060,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PAEG|59246|20261217|XTRA LEGROOM": {
+          "status": 1,
+          "price": 1060
         },
         "PAEG|59246|20261217|SUPERIOR": {
           "status": 0,
@@ -787,12 +787,12 @@
           "status": 3,
           "price": 770
         },
-        "PAEG|59247|20261217|XTRA LEGROOM": {
+        "PAEG|59247|20261217|PICTURE PERFECT": {
           "status": 0,
           "price": 1060,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PAEG|59247|20261217|PICTURE PERFECT": {
+        "PAEG|59247|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1060,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -806,12 +806,12 @@
           "status": 2,
           "price": 820
         },
-        "PAEG|59248|20261217|XTRA LEGROOM": {
+        "PAEG|59248|20261217|PICTURE PERFECT": {
           "status": 0,
           "price": 1080,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PAEG|59248|20261217|PICTURE PERFECT": {
+        "PAEG|59248|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1080,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -825,14 +825,14 @@
           "status": 3,
           "price": 790
         },
-        "PAEG|59249|20261217|XTRA LEGROOM": {
-          "status": 1,
-          "price": 1080
-        },
         "PAEG|59249|20261217|PICTURE PERFECT": {
           "status": 0,
           "price": 1080,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PAEG|59249|20261217|XTRA LEGROOM": {
+          "status": 1,
+          "price": 1080
         },
         "PAEG|59249|20261217|SUPERIOR": {
           "status": 0,
@@ -1013,14 +1013,14 @@
           "price": 1730,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "PCSN|29794|20261217|PRIME ROWS": {
+          "status": 2,
+          "price": 980
+        },
         "PCSN|29794|20261217|PRIME PLUS ROWS": {
           "status": 0,
           "price": 980,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PCSN|29794|20261217|PRIME ROWS": {
-          "status": 2,
-          "price": 980
         },
         "PCSN|29794|20261217|CLASSIC ROWS": {
           "status": 3,
@@ -1217,7 +1217,7 @@
           "price": 680
         },
         "CRGM|16687|20261217|RECLINER": {
-          "status": 2,
+          "status": 1,
           "price": 1650
         },
         "PPDA|32207|20261217|PRIME ROWS": {
@@ -1245,7 +1245,7 @@
           "price": 760
         },
         "PPDA|32210|20261217|PRIME ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 820
         },
         "PPDA|32210|20261217|CLASSIC ROWS": {
@@ -1269,8 +1269,9 @@
           "price": 620
         },
         "PVKS|23633|20261217|RECLINER ROWS": {
-          "status": 1,
-          "price": 1800
+          "status": 0,
+          "price": 1800,
+          "soldOutSince": "2026-11-23T12:44:42.833Z"
         },
         "PVKS|23633|20261217|PRIME ROWS": {
           "status": 2,
@@ -1281,8 +1282,9 @@
           "price": 800
         },
         "PVKS|23605|20261217|RECLINER ROWS": {
-          "status": 1,
-          "price": 950
+          "status": 0,
+          "price": 950,
+          "soldOutSince": "2026-11-23T12:44:42.833Z"
         },
         "PVKS|23605|20261217|PRIME ROWS": {
           "status": 0,
@@ -1608,7 +1610,7 @@
           "price": 840
         },
         "PECD|16633|20261217|CLASSIC ROWS": {
-          "status": 3,
+          "status": 1,
           "price": 790
         },
         "PECD|16634|20261217|PRIME PLUS ROWS": {
@@ -1724,7 +1726,7 @@
           "price": 560
         },
         "CNVG|9343|20261217|PREMIUM": {
-          "status": 3,
+          "status": 2,
           "price": 640
         },
         "CNVG|9343|20261217|PREMIUM XL": {
@@ -1798,12 +1800,12 @@
           "status": 3,
           "price": 550
         },
-        "PAEG|59257|20261218|PICTURE PERFECT": {
-          "status": 1,
-          "price": 820
-        },
         "PAEG|59257|20261218|XTRA LEGROOM": {
           "status": 2,
+          "price": 820
+        },
+        "PAEG|59257|20261218|PICTURE PERFECT": {
+          "status": 1,
           "price": 820
         },
         "PAEG|59257|20261218|SUPERIOR": {
@@ -1833,11 +1835,11 @@
           "status": 3,
           "price": 720
         },
-        "PAEG|59259|20261218|PICTURE PERFECT": {
+        "PAEG|59259|20261218|XTRA LEGROOM": {
           "status": 1,
           "price": 1060
         },
-        "PAEG|59259|20261218|XTRA LEGROOM": {
+        "PAEG|59259|20261218|PICTURE PERFECT": {
           "status": 1,
           "price": 1060
         },
@@ -1920,12 +1922,12 @@
           "price": 1530,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PCSN|29798|20261218|PRIME ROWS": {
-          "status": 2,
-          "price": 880
-        },
         "PCSN|29798|20261218|PRIME PLUS ROWS": {
           "status": 1,
+          "price": 880
+        },
+        "PCSN|29798|20261218|PRIME ROWS": {
+          "status": 2,
           "price": 880
         },
         "PCSN|29798|20261218|CLASSIC ROWS": {
@@ -2114,7 +2116,7 @@
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "PVKS|23616|20261218|PRIME ROWS": {
-          "status": 1,
+          "status": 2,
           "price": 650
         },
         "PVKS|23616|20261218|CLASSIC ROWS": {
@@ -2510,7 +2512,7 @@
           "price": 740
         },
         "PCSN|29802|20261219|RECLINER ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 1080
         },
         "PCSN|29802|20261219|PRIME PLUS ROWS": {
@@ -2546,11 +2548,12 @@
           "price": 1530
         },
         "PCSN|29804|20261219|PRIME PLUS ROWS": {
-          "status": 1,
-          "price": 880
+          "status": 0,
+          "price": 880,
+          "soldOutSince": "2026-11-23T12:44:42.833Z"
         },
         "PCSN|29804|20261219|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 780
         },
         "PCSN|29804|20261219|CLASSIC ROWS": {
@@ -2578,7 +2581,7 @@
           "price": 1730
         },
         "PCSN|29807|20261219|PRIME PLUS ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 880
         },
         "PCSN|29807|20261219|PRIME ROWS": {
@@ -3038,7 +3041,7 @@
           "price": 720
         },
         "PAEG|59268|20261220|PICTURE PERFECT": {
-          "status": 3,
+          "status": 2,
           "price": 720
         },
         "PAEG|59268|20261220|CLASSIC": {
@@ -3111,16 +3114,16 @@
           "status": 3,
           "price": 740
         },
-        "PAEG|59273|20261220|PICTURE PERFECT": {
-          "status": 2,
-          "price": 980
-        },
         "PAEG|59273|20261220|XTRA LEGROOM": {
           "status": 3,
           "price": 980
         },
+        "PAEG|59273|20261220|PICTURE PERFECT": {
+          "status": 3,
+          "price": 980
+        },
         "PAEG|59273|20261220|SUPERIOR": {
-          "status": 1,
+          "status": 2,
           "price": 950
         },
         "PAEG|59273|20261220|CLASSIC": {
@@ -3163,21 +3166,21 @@
           "status": 1,
           "price": 1530
         },
+        "PCSN|29810|20261220|PRIME ROWS": {
+          "status": 2,
+          "price": 880
+        },
         "PCSN|29810|20261220|PRIME PLUS ROWS": {
           "status": 0,
           "price": 880,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PCSN|29810|20261220|PRIME ROWS": {
-          "status": 2,
-          "price": 880
         },
         "PCSN|29810|20261220|CLASSIC ROWS": {
           "status": 3,
           "price": 630
         },
         "PCSN|29812|20261220|RECLINER ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 1730
         },
         "PCSN|29812|20261220|PRIME PLUS ROWS": {
@@ -3193,11 +3196,11 @@
           "price": 730
         },
         "PCSN|29813|20261220|RECLINER ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 1530
         },
         "PCSN|29813|20261220|PRIME PLUS ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 780
         },
         "PCSN|29813|20261220|PRIME ROWS": {
@@ -3289,7 +3292,7 @@
           "price": 680
         },
         "CRGM|16699|20261220|RECLINER": {
-          "status": 3,
+          "status": 2,
           "price": 1650
         },
         "CRGM|16700|20261220|NORMAL": {
@@ -3313,7 +3316,7 @@
           "price": 680
         },
         "CRGM|16700|20261220|RECLINER": {
-          "status": 2,
+          "status": 3,
           "price": 1650
         },
         "CRGM|16702|20261220|NORMAL": {
@@ -3353,11 +3356,11 @@
           "price": 490
         },
         "PVKS|23628|20261220|RECLINER ROWS": {
-          "status": 1,
+          "status": 2,
           "price": 1190
         },
         "PVKS|23628|20261220|PRIME ROWS": {
-          "status": 1,
+          "status": 2,
           "price": 700
         },
         "PVKS|23628|20261220|CLASSIC ROWS": {
@@ -3677,12 +3680,12 @@
           "status": 3,
           "price": 1600
         },
-        "PAEG|59333|20261217|XTRA LEGROOM": {
-          "status": 3,
-          "price": 2000
-        },
         "PAEG|59333|20261217|PICTURE PERFECT": {
           "status": 2,
+          "price": 2000
+        },
+        "PAEG|59333|20261217|XTRA LEGROOM": {
+          "status": 3,
           "price": 2000
         },
         "PAEG|59333|20261217|SUPERIOR": {
@@ -3745,27 +3748,27 @@
           "status": 1,
           "price": 1140
         },
+        "PPGV|39249|20261217|CLASSIC ROWS": {
+          "status": 3,
+          "price": 1040
+        },
         "PPGV|39249|20261217|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PPGV|39249|20261217|CLASSIC ROWS": {
-          "status": 3,
-          "price": 1040
-        },
         "PPGV|39250|20261217|PRIME PLUS ROWS": {
           "status": 1,
           "price": 1140
+        },
+        "PPGV|39250|20261217|CLASSIC ROWS": {
+          "status": 2,
+          "price": 1040
         },
         "PPGV|39250|20261217|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PPGV|39250|20261217|CLASSIC ROWS": {
-          "status": 2,
-          "price": 1040
         },
         "PPGV|39251|20261217|PRIME PLUS ROWS": {
           "status": 1,
@@ -3894,33 +3897,33 @@
           "status": 2,
           "price": 1140
         },
+        "PPGV|39362|20261218|CLASSIC ROWS": {
+          "status": 3,
+          "price": 1040
+        },
         "PPGV|39362|20261218|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PPGV|39362|20261218|CLASSIC ROWS": {
-          "status": 3,
-          "price": 1040
-        },
         "PPGV|39364|20261218|PRIME PLUS ROWS": {
           "status": 2,
           "price": 1140
+        },
+        "PPGV|39364|20261218|CLASSIC ROWS": {
+          "status": 3,
+          "price": 1040
         },
         "PPGV|39364|20261218|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PPGV|39364|20261218|CLASSIC ROWS": {
-          "status": 3,
-          "price": 1040
-        },
-        "PAEG|59519|20261219|XTRA LEGROOM": {
-          "status": 3,
+        "PAEG|59519|20261219|PICTURE PERFECT": {
+          "status": 2,
           "price": 1800
         },
-        "PAEG|59519|20261219|PICTURE PERFECT": {
+        "PAEG|59519|20261219|XTRA LEGROOM": {
           "status": 3,
           "price": 1800
         },
@@ -3932,11 +3935,11 @@
           "status": 3,
           "price": 1400
         },
-        "PAEG|59520|20261219|XTRA LEGROOM": {
-          "status": 3,
+        "PAEG|59520|20261219|PICTURE PERFECT": {
+          "status": 2,
           "price": 1800
         },
-        "PAEG|59520|20261219|PICTURE PERFECT": {
+        "PAEG|59520|20261219|XTRA LEGROOM": {
           "status": 3,
           "price": 1800
         },
@@ -3949,7 +3952,7 @@
           "price": 1400
         },
         "PAEG|59521|20261219|PICTURE PERFECT": {
-          "status": 1,
+          "status": 2,
           "price": 1900
         },
         "PAEG|59521|20261219|XTRA LEGROOM": {
@@ -3964,12 +3967,12 @@
           "status": 3,
           "price": 1400
         },
-        "PAEG|59522|20261219|XTRA LEGROOM": {
-          "status": 3,
-          "price": 1800
-        },
         "PAEG|59522|20261219|PICTURE PERFECT": {
           "status": 2,
+          "price": 1800
+        },
+        "PAEG|59522|20261219|XTRA LEGROOM": {
+          "status": 3,
           "price": 1800
         },
         "PAEG|59522|20261219|SUPERIOR": {
@@ -3981,7 +3984,7 @@
           "price": 1400
         },
         "PAEG|59523|20261219|PICTURE PERFECT": {
-          "status": 2,
+          "status": 1,
           "price": 1900
         },
         "PAEG|59523|20261219|XTRA LEGROOM": {
@@ -4013,31 +4016,31 @@
           "status": 2,
           "price": 1140
         },
+        "PPGV|39367|20261219|CLASSIC ROWS": {
+          "status": 3,
+          "price": 1040
+        },
         "PPGV|39367|20261219|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PPGV|39367|20261219|CLASSIC ROWS": {
-          "status": 3,
-          "price": 1040
         },
         "PPGV|39369|20261219|PRIME PLUS ROWS": {
           "status": 0,
           "price": 1140,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "PPGV|39369|20261219|CLASSIC ROWS": {
+          "status": 3,
+          "price": 1040
+        },
         "PPGV|39369|20261219|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PPGV|39369|20261219|CLASSIC ROWS": {
-          "status": 3,
-          "price": 1040
-        },
         "PAEG|59525|20261220|PICTURE PERFECT": {
-          "status": 3,
+          "status": 2,
           "price": 1800
         },
         "PAEG|59525|20261220|XTRA LEGROOM": {
@@ -4084,11 +4087,11 @@
           "status": 3,
           "price": 1400
         },
-        "PAEG|59528|20261220|XTRA LEGROOM": {
-          "status": 3,
+        "PAEG|59528|20261220|PICTURE PERFECT": {
+          "status": 2,
           "price": 1800
         },
-        "PAEG|59528|20261220|PICTURE PERFECT": {
+        "PAEG|59528|20261220|XTRA LEGROOM": {
           "status": 3,
           "price": 1800
         },
@@ -4100,11 +4103,11 @@
           "status": 3,
           "price": 1400
         },
-        "PAEG|59529|20261220|XTRA LEGROOM": {
-          "status": 3,
+        "PAEG|59529|20261220|PICTURE PERFECT": {
+          "status": 2,
           "price": 1800
         },
-        "PAEG|59529|20261220|PICTURE PERFECT": {
+        "PAEG|59529|20261220|XTRA LEGROOM": {
           "status": 3,
           "price": 1800
         },
@@ -4133,14 +4136,14 @@
           "status": 1,
           "price": 1140
         },
+        "PPGV|39372|20261220|CLASSIC ROWS": {
+          "status": 2,
+          "price": 1040
+        },
         "PPGV|39372|20261220|PRIME ROWS": {
           "status": 0,
           "price": 1040,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PPGV|39372|20261220|CLASSIC ROWS": {
-          "status": 2,
-          "price": 1040
         },
         "PPGV|39374|20261220|PRIME PLUS ROWS": {
           "status": 2,
@@ -4189,8 +4192,9 @@
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37633|20261217|RECLINER": {
-          "status": 1,
-          "price": 2100
+          "status": 0,
+          "price": 2100,
+          "soldOutSince": "2026-11-23T12:44:42.833Z"
         },
         "DTYN|37633|20261217|XTRA LEGROOM": {
           "status": 1,
@@ -4323,16 +4327,16 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37479|20261217|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37479|20261217|CLASSIC": {
           "status": 2,
           "price": 1000
         },
         "DTYN|37479|20261217|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "DTYN|37479|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -4371,6 +4375,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37480|20261217|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37480|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -4379,11 +4388,6 @@
         "DTYN|37480|20261217|CLASSIC": {
           "status": 2,
           "price": 1000
-        },
-        "DTYN|37480|20261217|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "PGND|44738|20261217|RECLINER": {
           "status": 0,
@@ -4662,12 +4666,12 @@
           "price": 1120,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PCSN|29761|20261217|PRIME ROWS": {
+        "PCSN|29761|20261217|PRIME PLUS ROWS": {
           "status": 0,
           "price": 750,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PCSN|29761|20261217|PRIME PLUS ROWS": {
+        "PCSN|29761|20261217|PRIME ROWS": {
           "status": 0,
           "price": 750,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -4681,14 +4685,14 @@
           "price": 1570,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "PCSN|29762|20261217|PRIME ROWS": {
+          "status": 1,
+          "price": 1020
+        },
         "PCSN|29762|20261217|PRIME PLUS ROWS": {
           "status": 0,
           "price": 1020,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PCSN|29762|20261217|PRIME ROWS": {
-          "status": 1,
-          "price": 1020
         },
         "PCSN|29762|20261217|CLASSIC ROWS": {
           "status": 3,
@@ -4803,7 +4807,7 @@
           "price": 2400
         },
         "PCEL|12516|20261217|PRIME": {
-          "status": 2,
+          "status": 1,
           "price": 1600
         },
         "PCEL|12516|20261217|CLASSIC": {
@@ -5595,11 +5599,11 @@
           "status": 2,
           "price": 840
         },
-        "SCND|96208|20261217|Club": {
+        "SCND|96208|20261217|Royal": {
           "status": 1,
           "price": 700
         },
-        "SCND|96208|20261217|Royal": {
+        "SCND|96208|20261217|Club": {
           "status": 1,
           "price": 700
         },
@@ -5628,12 +5632,12 @@
           "status": 3,
           "price": 780
         },
-        "SCND|96164|20261217|Club": {
-          "status": 2,
-          "price": 700
-        },
         "SCND|96164|20261217|Royal": {
           "status": 1,
+          "price": 700
+        },
+        "SCND|96164|20261217|Club": {
+          "status": 2,
           "price": 700
         },
         "SCND|96164|20261217|Executive": {
@@ -5660,12 +5664,12 @@
           "status": 2,
           "price": 1020
         },
-        "SCND|96143|20261217|Royal": {
-          "status": 1,
-          "price": 850
-        },
         "SCND|96143|20261217|Club": {
           "status": 2,
+          "price": 850
+        },
+        "SCND|96143|20261217|Royal": {
+          "status": 1,
           "price": 850
         },
         "SCND|96143|20261217|Executive": {
@@ -5677,12 +5681,12 @@
           "price": 2400,
           "soldOutSince": "2026-11-23T11:52:13.692Z"
         },
-        "SCND|96170|20261217|Royal": {
-          "status": 1,
-          "price": 900
-        },
         "SCND|96170|20261217|Club": {
           "status": 2,
+          "price": 900
+        },
+        "SCND|96170|20261217|Royal": {
+          "status": 1,
           "price": 900
         },
         "SCND|96170|20261217|Executive": {
@@ -5693,11 +5697,11 @@
           "status": 3,
           "price": 960
         },
-        "SCND|96144|20261217|Royal": {
+        "SCND|96144|20261217|Club": {
           "status": 1,
           "price": 900
         },
-        "SCND|96144|20261217|Club": {
+        "SCND|96144|20261217|Royal": {
           "status": 1,
           "price": 900
         },
@@ -5710,11 +5714,11 @@
           "price": 2400,
           "soldOutSince": "2026-11-23T11:52:13.692Z"
         },
-        "SCND|96171|20261217|Club": {
+        "SCND|96171|20261217|Royal": {
           "status": 1,
           "price": 900
         },
-        "SCND|96171|20261217|Royal": {
+        "SCND|96171|20261217|Club": {
           "status": 1,
           "price": 900
         },
@@ -5742,12 +5746,12 @@
           "status": 1,
           "price": 2500
         },
-        "SCND|96172|20261217|Club": {
-          "status": 2,
-          "price": 1000
-        },
         "SCND|96172|20261217|Royal": {
           "status": 1,
+          "price": 1000
+        },
+        "SCND|96172|20261217|Club": {
+          "status": 2,
           "price": 1000
         },
         "SCND|96172|20261217|Executive": {
@@ -5758,11 +5762,11 @@
           "status": 2,
           "price": 1200
         },
-        "SCND|96146|20261217|Club": {
+        "SCND|96146|20261217|Royal": {
           "status": 1,
           "price": 1000
         },
-        "SCND|96146|20261217|Royal": {
+        "SCND|96146|20261217|Club": {
           "status": 1,
           "price": 1000
         },
@@ -5860,11 +5864,11 @@
           "status": 2,
           "price": 710
         },
-        "INWM|49565|20261217|EXTRA LEGROOM ROWS": {
+        "INWM|49565|20261217|PRIME ROWS": {
           "status": 3,
           "price": 640
         },
-        "INWM|49565|20261217|PRIME ROWS": {
+        "INWM|49565|20261217|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 640
         },
@@ -6141,8 +6145,9 @@
           "price": 670
         },
         "IAJS|55770|20261217|RECLINER ROWS": {
-          "status": 1,
-          "price": 1260
+          "status": 0,
+          "price": 1260,
+          "soldOutSince": "2026-11-23T12:44:42.833Z"
         },
         "IAJS|55770|20261217|EXTRA LEGROOM ROWS": {
           "status": 3,
@@ -6278,7 +6283,7 @@
           "price": 770
         },
         "PECD|16612|20261217|CLASSIC ROWS": {
-          "status": 1,
+          "status": 3,
           "price": 640
         },
         "PECD|16613|20261217|PRIME PLUS ROWS": {
@@ -6302,7 +6307,7 @@
           "price": 770
         },
         "PECD|16614|20261217|CLASSIC ROWS": {
-          "status": 2,
+          "status": 3,
           "price": 640
         },
         "IOTG|11778|20261217|Recliners": {
@@ -6375,11 +6380,11 @@
           "status": 2,
           "price": 760
         },
-        "IEFM|67883|20261217|PICTURE PERFECT": {
+        "IEFM|67883|20261217|PRIME ROWS": {
           "status": 2,
           "price": 460
         },
-        "IEFM|67883|20261217|PRIME ROWS": {
+        "IEFM|67883|20261217|PICTURE PERFECT": {
           "status": 2,
           "price": 460
         },
@@ -6423,15 +6428,15 @@
           "status": 3,
           "price": 810
         },
+        "IEFM|67887|20261217|EXTRA LEGROOM ROWS": {
+          "status": 3,
+          "price": 460
+        },
         "IEFM|67887|20261217|PICTURE PERFECT": {
           "status": 3,
           "price": 460
         },
         "IEFM|67887|20261217|PRIME ROWS": {
-          "status": 3,
-          "price": 460
-        },
-        "IEFM|67887|20261217|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
@@ -6516,7 +6521,7 @@
           "price": 750
         },
         "CNVG|9332|20261217|PREMIUM": {
-          "status": 2,
+          "status": 1,
           "price": 800
         },
         "CNVG|9332|20261217|PREMIUM XL": {
@@ -6575,11 +6580,11 @@
           "status": 1,
           "price": 760
         },
-        "INSG|40922|20261217|EXTRA LEGROOM ROWS": {
+        "INSG|40922|20261217|PICTURE PERFECT": {
           "status": 3,
           "price": 430
         },
-        "INSG|40922|20261217|PICTURE PERFECT": {
+        "INSG|40922|20261217|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 430
         },
@@ -6619,11 +6624,11 @@
           "status": 3,
           "price": 760
         },
-        "INSG|40923|20261217|EXTRA LEGROOM ROWS": {
+        "INSG|40923|20261217|PICTURE PERFECT": {
           "status": 3,
           "price": 530
         },
-        "INSG|40923|20261217|PICTURE PERFECT": {
+        "INSG|40923|20261217|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 530
         },
@@ -6663,11 +6668,11 @@
           "status": 1,
           "price": 850
         },
-        "INSG|40924|20261217|EXTRA LEGROOM ROWS": {
+        "INSG|40924|20261217|PICTURE PERFECT": {
           "status": 3,
           "price": 490
         },
-        "INSG|40924|20261217|PICTURE PERFECT": {
+        "INSG|40924|20261217|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 490
         },
@@ -7030,6 +7035,10 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37483|20261218|CLASSIC": {
+          "status": 2,
+          "price": 1000
+        },
         "DTYN|37483|20261218|PRIME": {
           "status": 0,
           "price": 1000,
@@ -7037,10 +7046,6 @@
         },
         "DTYN|37483|20261218|XTRA LEGROOM": {
           "status": 1,
-          "price": 1000
-        },
-        "DTYN|37483|20261218|CLASSIC": {
-          "status": 2,
           "price": 1000
         },
         "DTYN|37650|20261218|RECLINER": {
@@ -7123,16 +7128,16 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37485|20261218|PRIME": {
-          "status": 1,
-          "price": 1000
-        },
         "DTYN|37485|20261218|XTRA LEGROOM": {
           "status": 1,
           "price": 1000
         },
         "DTYN|37485|20261218|CLASSIC": {
           "status": 3,
+          "price": 1000
+        },
+        "DTYN|37485|20261218|PRIME": {
+          "status": 1,
           "price": 1000
         },
         "PGND|44743|20261218|RECLINER": {
@@ -7367,14 +7372,14 @@
           "price": 1120,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PCSN|29766|20261218|PRIME ROWS": {
-          "status": 2,
-          "price": 750
-        },
         "PCSN|29766|20261218|PRIME PLUS ROWS": {
           "status": 0,
           "price": 750,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PCSN|29766|20261218|PRIME ROWS": {
+          "status": 2,
+          "price": 750
         },
         "PCSN|29766|20261218|CLASSIC ROWS": {
           "status": 3,
@@ -7403,14 +7408,14 @@
           "price": 1570,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "PCSN|29768|20261218|PRIME ROWS": {
+          "status": 2,
+          "price": 1020
+        },
         "PCSN|29768|20261218|PRIME PLUS ROWS": {
           "status": 0,
           "price": 1020,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PCSN|29768|20261218|PRIME ROWS": {
-          "status": 2,
-          "price": 1020
         },
         "PCSN|29768|20261218|CLASSIC ROWS": {
           "status": 3,
@@ -7511,7 +7516,7 @@
           "price": 2400
         },
         "PCEL|12522|20261218|PRIME": {
-          "status": 3,
+          "status": 2,
           "price": 1600
         },
         "PCEL|12522|20261218|CLASSIC": {
@@ -7727,7 +7732,7 @@
           "price": 640
         },
         "PPDA|32165|20261218|PRIME ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 860
         },
         "PPDA|32165|20261218|CLASSIC ROWS": {
@@ -7884,7 +7889,7 @@
           "price": 610
         },
         "CUNT|7740|20261218|RECLINER": {
-          "status": 2,
+          "status": 3,
           "price": 1500
         },
         "WVRN|90229|20261218|CLASSIC": {
@@ -8132,7 +8137,7 @@
           "price": 650
         },
         "SCND|96165|20261218|Royal": {
-          "status": 2,
+          "status": 3,
           "price": 550
         },
         "SCND|96165|20261218|Executive": {
@@ -8324,7 +8329,7 @@
           "price": 830
         },
         "INWM|49574|20261218|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 820
         },
         "INWM|49574|20261218|EXTRA LEGROOM ROWS": {
@@ -8642,7 +8647,7 @@
           "price": 870
         },
         "PECD|16616|20261218|CLASSIC ROWS": {
-          "status": 2,
+          "status": 3,
           "price": 820
         },
         "PECD|16617|20261218|PRIME PLUS ROWS": {
@@ -8655,7 +8660,7 @@
           "price": 870
         },
         "PECD|16617|20261218|CLASSIC ROWS": {
-          "status": 2,
+          "status": 3,
           "price": 820
         },
         "PECD|16618|20261218|PRIME PLUS ROWS": {
@@ -8679,7 +8684,7 @@
           "price": 870
         },
         "PECD|16619|20261218|CLASSIC ROWS": {
-          "status": 2,
+          "status": 3,
           "price": 820
         },
         "IOTG|11784|20261218|Recliners": {
@@ -8750,15 +8755,15 @@
           "status": 3,
           "price": 670
         },
+        "IEFM|67889|20261218|PRIME ROWS": {
+          "status": 3,
+          "price": 370
+        },
         "IEFM|67889|20261218|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 370
         },
         "IEFM|67889|20261218|PICTURE PERFECT": {
-          "status": 3,
-          "price": 370
-        },
-        "IEFM|67889|20261218|PRIME ROWS": {
           "status": 3,
           "price": 370
         },
@@ -8774,15 +8779,15 @@
           "status": 3,
           "price": 770
         },
-        "IEFM|67891|20261218|PRIME ROWS": {
-          "status": 3,
-          "price": 460
-        },
         "IEFM|67891|20261218|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
         "IEFM|67891|20261218|PICTURE PERFECT": {
+          "status": 3,
+          "price": 460
+        },
+        "IEFM|67891|20261218|PRIME ROWS": {
           "status": 3,
           "price": 460
         },
@@ -8798,15 +8803,15 @@
           "status": 3,
           "price": 770
         },
+        "IEFM|67893|20261218|EXTRA LEGROOM ROWS": {
+          "status": 3,
+          "price": 460
+        },
         "IEFM|67893|20261218|PICTURE PERFECT": {
           "status": 3,
           "price": 460
         },
         "IEFM|67893|20261218|PRIME ROWS": {
-          "status": 3,
-          "price": 460
-        },
-        "IEFM|67893|20261218|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
@@ -8867,7 +8872,7 @@
           "price": 650
         },
         "CNVG|9362|20261218|PREMIUM": {
-          "status": 3,
+          "status": 2,
           "price": 700
         },
         "CNVG|9362|20261218|PREMIUM XL": {
@@ -8924,11 +8929,11 @@
           "status": 3,
           "price": 560
         },
-        "INSG|40928|20261218|EXTRA LEGROOM ROWS": {
+        "INSG|40928|20261218|PICTURE PERFECT": {
           "status": 3,
           "price": 430
         },
-        "INSG|40928|20261218|PICTURE PERFECT": {
+        "INSG|40928|20261218|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 430
         },
@@ -8968,11 +8973,11 @@
           "status": 3,
           "price": 560
         },
-        "INSG|40929|20261218|EXTRA LEGROOM ROWS": {
+        "INSG|40929|20261218|PICTURE PERFECT": {
           "status": 3,
           "price": 430
         },
-        "INSG|40929|20261218|PICTURE PERFECT": {
+        "INSG|40929|20261218|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 430
         },
@@ -9282,10 +9287,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37486|20261219|CLASSIC": {
-          "status": 3,
-          "price": 1000
-        },
         "DTYN|37486|20261219|PRIME": {
           "status": 0,
           "price": 1000,
@@ -9295,6 +9296,10 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "DTYN|37486|20261219|CLASSIC": {
+          "status": 3,
+          "price": 1000
         },
         "DTYN|37652|20261219|RECLINER": {
           "status": 0,
@@ -9330,6 +9335,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37487|20261219|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37487|20261219|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -9338,11 +9348,6 @@
         "DTYN|37487|20261219|CLASSIC": {
           "status": 3,
           "price": 1000
-        },
-        "DTYN|37487|20261219|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37653|20261219|RECLINER": {
           "status": 1,
@@ -9513,7 +9518,7 @@
           "price": 670
         },
         "PGND|44791|20261219|RECLINER": {
-          "status": 2,
+          "status": 1,
           "price": 1120
         },
         "PGND|44791|20261219|PRIME": {
@@ -9736,14 +9741,14 @@
           "price": 1120,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "PCSN|29773|20261219|PRIME ROWS": {
+          "status": 2,
+          "price": 750
+        },
         "PCSN|29773|20261219|PRIME PLUS ROWS": {
           "status": 0,
           "price": 750,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PCSN|29773|20261219|PRIME ROWS": {
-          "status": 2,
-          "price": 750
         },
         "PCSN|29773|20261219|CLASSIC ROWS": {
           "status": 3,
@@ -9786,7 +9791,7 @@
           "price": 770
         },
         "PCSN|29776|20261219|RECLINER ROWS": {
-          "status": 1,
+          "status": 2,
           "price": 1570
         },
         "PCSN|29776|20261219|PRIME PLUS ROWS": {
@@ -10036,7 +10041,7 @@
           "price": 590
         },
         "PMMS|22479|20261219|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 670
         },
         "PMMS|22479|20261219|CLASSIC ROWS": {
@@ -10060,7 +10065,7 @@
           "price": 510
         },
         "PPDA|32168|20261219|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 720
         },
         "PPDA|32168|20261219|CLASSIC ROWS": {
@@ -10076,7 +10081,7 @@
           "price": 660
         },
         "PPDA|32171|20261219|PRIME ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 860
         },
         "PPDA|32171|20261219|CLASSIC ROWS": {
@@ -10384,16 +10389,15 @@
           "price": 1400
         },
         "PPMF|31632|20261219|EXTRA LEGROOM ROWS": {
-          "status": 0,
-          "price": 720,
-          "soldOutSince": "2026-11-23T06:32:16.540Z"
+          "status": 1,
+          "price": 720
         },
         "PPMF|31632|20261219|PICTURE PERFECT": {
           "status": 3,
           "price": 700
         },
         "PPMF|31632|20261219|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 650
         },
         "PPMF|31632|20261219|CLASSIC ROWS": {
@@ -10477,11 +10481,11 @@
           "status": 3,
           "price": 720
         },
-        "SCND|96166|20261219|Club": {
+        "SCND|96166|20261219|Royal": {
           "status": 3,
           "price": 600
         },
-        "SCND|96166|20261219|Royal": {
+        "SCND|96166|20261219|Club": {
           "status": 3,
           "price": 600
         },
@@ -10558,11 +10562,11 @@
           "status": 3,
           "price": 1080
         },
-        "SCND|96157|20261219|Club": {
+        "SCND|96157|20261219|Royal": {
           "status": 3,
           "price": 900
         },
-        "SCND|96157|20261219|Royal": {
+        "SCND|96157|20261219|Club": {
           "status": 3,
           "price": 900
         },
@@ -10603,7 +10607,7 @@
           "price": 710
         },
         "INWM|49577|20261219|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 690
         },
         "INWM|49577|20261219|EXTRA LEGROOM ROWS": {
@@ -10976,11 +10980,11 @@
           "price": 920
         },
         "PECD|16620|20261219|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 870
         },
         "PECD|16620|20261219|CLASSIC ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 820
         },
         "PECD|16621|20261219|PRIME PLUS ROWS": {
@@ -10996,7 +11000,7 @@
           "price": 820
         },
         "PECD|16622|20261219|PRIME PLUS ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 920
         },
         "PECD|16622|20261219|PRIME ROWS": {
@@ -11004,7 +11008,7 @@
           "price": 870
         },
         "PECD|16622|20261219|CLASSIC ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 820
         },
         "PECD|16623|20261219|PRIME PLUS ROWS": {
@@ -11016,7 +11020,7 @@
           "price": 870
         },
         "PECD|16623|20261219|CLASSIC ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 820
         },
         "PECD|16624|20261219|PRIME PLUS ROWS": {
@@ -11080,7 +11084,7 @@
           "price": 800
         },
         "EDMP|16805|20261219|PRIME": {
-          "status": 2,
+          "status": 3,
           "price": 510
         },
         "EDMP|16805|20261219|CLASSIC": {
@@ -11099,15 +11103,15 @@
           "status": 3,
           "price": 670
         },
-        "IEFM|67895|20261219|EXTRA LEGROOM ROWS": {
-          "status": 3,
-          "price": 370
-        },
         "IEFM|67895|20261219|PICTURE PERFECT": {
           "status": 3,
           "price": 370
         },
         "IEFM|67895|20261219|PRIME ROWS": {
+          "status": 3,
+          "price": 370
+        },
+        "IEFM|67895|20261219|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 370
         },
@@ -11123,15 +11127,15 @@
           "status": 3,
           "price": 770
         },
-        "IEFM|67897|20261219|PRIME ROWS": {
-          "status": 3,
-          "price": 460
-        },
         "IEFM|67897|20261219|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
         "IEFM|67897|20261219|PICTURE PERFECT": {
+          "status": 3,
+          "price": 460
+        },
+        "IEFM|67897|20261219|PRIME ROWS": {
           "status": 3,
           "price": 460
         },
@@ -11147,15 +11151,15 @@
           "status": 3,
           "price": 770
         },
+        "IEFM|67899|20261219|PRIME ROWS": {
+          "status": 3,
+          "price": 460
+        },
         "IEFM|67899|20261219|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
         "IEFM|67899|20261219|PICTURE PERFECT": {
-          "status": 3,
-          "price": 460
-        },
-        "IEFM|67899|20261219|PRIME ROWS": {
           "status": 3,
           "price": 460
         },
@@ -11492,11 +11496,11 @@
           "status": 2,
           "price": 850
         },
-        "INSG|40939|20261219|PICTURE PERFECT": {
+        "INSG|40939|20261219|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 490
         },
-        "INSG|40939|20261219|EXTRA LEGROOM ROWS": {
+        "INSG|40939|20261219|PICTURE PERFECT": {
           "status": 3,
           "price": 490
         },
@@ -11557,7 +11561,7 @@
           "price": 1240
         },
         "CCPZ|17988|20261219|PRIME ROWS": {
-          "status": 2,
+          "status": 3,
           "price": 740
         },
         "CCPZ|17988|20261219|EXTRA LEGROOM ROWS": {
@@ -11629,11 +11633,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37491|20261220|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
         "DTYN|37491|20261220|XTRA LEGROOM": {
           "status": 1,
           "price": 1000
@@ -11642,8 +11641,13 @@
           "status": 3,
           "price": 1000
         },
+        "DTYN|37491|20261220|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37656|20261220|RECLINER": {
-          "status": 2,
+          "status": 1,
           "price": 2100
         },
         "DTYN|37656|20261220|XTRA LEGROOM": {
@@ -11722,6 +11726,10 @@
           "status": 1,
           "price": 2200
         },
+        "DTYN|37493|20261220|CLASSIC": {
+          "status": 3,
+          "price": 1000
+        },
         "DTYN|37493|20261220|PRIME": {
           "status": 0,
           "price": 1000,
@@ -11731,10 +11739,6 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "DTYN|37493|20261220|CLASSIC": {
-          "status": 3,
-          "price": 1000
         },
         "DTYN|37658|20261220|RECLINER": {
           "status": 2,
@@ -11769,6 +11773,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37494|20261220|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37494|20261220|CLASSIC": {
           "status": 3,
           "price": 1000
@@ -11776,11 +11785,6 @@
         "DTYN|37494|20261220|PRIME": {
           "status": 1,
           "price": 1000
-        },
-        "DTYN|37494|20261220|XTRA LEGROOM": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37659|20261220|RECLINER": {
           "status": 3,
@@ -12003,7 +12007,7 @@
           "price": 940
         },
         "PPGV|39247|20261220|PRIME ROWS": {
-          "status": 2,
+          "status": 1,
           "price": 990
         },
         "PPGV|39247|20261220|CLASSIC ROWS": {
@@ -12055,12 +12059,12 @@
           "price": 1120,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "PCSN|29778|20261220|PRIME PLUS ROWS": {
-          "status": 1,
-          "price": 650
-        },
         "PCSN|29778|20261220|PRIME ROWS": {
           "status": 3,
+          "price": 650
+        },
+        "PCSN|29778|20261220|PRIME PLUS ROWS": {
+          "status": 1,
           "price": 650
         },
         "PCSN|29778|20261220|CLASSIC ROWS": {
@@ -12185,7 +12189,7 @@
           "price": 2400
         },
         "PCEL|12533|20261220|PRIME": {
-          "status": 2,
+          "status": 3,
           "price": 1600
         },
         "PCEL|12533|20261220|CLASSIC": {
@@ -12542,7 +12546,7 @@
           "price": 560
         },
         "CUNT|7775|20261220|PREMIUM": {
-          "status": 2,
+          "status": 3,
           "price": 590
         },
         "CUNT|7775|20261220|RECLINER": {
@@ -12703,9 +12707,8 @@
           "price": 700
         },
         "PPMF|31636|20261220|EXTRA LEGROOM ROWS": {
-          "status": 0,
-          "price": 670,
-          "soldOutSince": "2026-11-23T12:18:21.477Z"
+          "status": 1,
+          "price": 670
         },
         "PPMF|31636|20261220|PRIME ROWS": {
           "status": 2,
@@ -13431,15 +13434,15 @@
           "status": 3,
           "price": 670
         },
-        "IEFM|67901|20261220|EXTRA LEGROOM ROWS": {
-          "status": 3,
-          "price": 370
-        },
         "IEFM|67901|20261220|PICTURE PERFECT": {
           "status": 3,
           "price": 370
         },
         "IEFM|67901|20261220|PRIME ROWS": {
+          "status": 3,
+          "price": 370
+        },
+        "IEFM|67901|20261220|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 370
         },
@@ -13455,15 +13458,15 @@
           "status": 3,
           "price": 770
         },
+        "IEFM|67903|20261220|EXTRA LEGROOM ROWS": {
+          "status": 3,
+          "price": 460
+        },
         "IEFM|67903|20261220|PICTURE PERFECT": {
           "status": 3,
           "price": 460
         },
         "IEFM|67903|20261220|PRIME ROWS": {
-          "status": 3,
-          "price": 460
-        },
-        "IEFM|67903|20261220|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
@@ -13479,15 +13482,15 @@
           "status": 3,
           "price": 770
         },
+        "IEFM|67905|20261220|PRIME ROWS": {
+          "status": 3,
+          "price": 460
+        },
         "IEFM|67905|20261220|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 460
         },
         "IEFM|67905|20261220|PICTURE PERFECT": {
-          "status": 3,
-          "price": 460
-        },
-        "IEFM|67905|20261220|PRIME ROWS": {
           "status": 3,
           "price": 460
         },
@@ -13737,11 +13740,11 @@
           "status": 3,
           "price": 850
         },
-        "INSG|40943|20261220|PICTURE PERFECT": {
+        "INSG|40943|20261220|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 490
         },
-        "INSG|40943|20261220|EXTRA LEGROOM ROWS": {
+        "INSG|40943|20261220|PICTURE PERFECT": {
           "status": 3,
           "price": 490
         },
@@ -13781,11 +13784,11 @@
           "status": 3,
           "price": 650
         },
-        "INSG|40944|20261220|PICTURE PERFECT": {
+        "INSG|40944|20261220|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 490
         },
-        "INSG|40944|20261220|EXTRA LEGROOM ROWS": {
+        "INSG|40944|20261220|PICTURE PERFECT": {
           "status": 3,
           "price": 490
         },
@@ -13825,11 +13828,11 @@
           "status": 3,
           "price": 650
         },
-        "INSG|40945|20261220|PICTURE PERFECT": {
+        "INSG|40945|20261220|EXTRA LEGROOM ROWS": {
           "status": 3,
           "price": 490
         },
-        "INSG|40945|20261220|EXTRA LEGROOM ROWS": {
+        "INSG|40945|20261220|PICTURE PERFECT": {
           "status": 3,
           "price": 490
         },
@@ -13850,11 +13853,11 @@
           "price": 610
         },
         "CCPZ|17991|20261220|EXTRA LEGROOM ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 580
         },
         "CCPZ|17991|20261220|PRIME ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 530
         },
         "CCPZ|17991|20261220|CLASSIC PLUS ROWS": {
@@ -13886,7 +13889,7 @@
           "price": 560
         },
         "CCPZ|17993|20261220|RECLINER ROWS": {
-          "status": 3,
+          "status": 2,
           "price": 1040
         },
         "CCPZ|17993|20261220|EXTRA LEGROOM ROWS": {
@@ -13946,7 +13949,7 @@
           "price": 590
         }
       },
-      "lastCheckedAt": "2026-11-23T12:39:05.089Z",
+      "lastCheckedAt": "2026-11-23T13:05:30.254Z",
       "lastResult": "935 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -14616,7 +14619,7 @@
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-23T12:39:05.089Z",
+      "lastCheckedAt": "2026-11-23T13:05:30.254Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
@@ -14628,7 +14631,7 @@
       "dates": [],
       "cats": {},
       "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-23T12:39:05.131Z"
+      "lastCheckedAt": "2026-11-23T13:05:30.286Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -14687,12 +14690,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37479|20261217|PRIME": {
+        "DTYN|37479|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37479|20261217|XTRA LEGROOM": {
+        "DTYN|37479|20261217|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -14702,12 +14705,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37480|20261217|XTRA LEGROOM": {
+        "DTYN|37480|20261217|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37480|20261217|PRIME": {
+        "DTYN|37480|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -14776,11 +14779,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37485|20261218|PRIME": {
+        "DTYN|37485|20261218|XTRA LEGROOM": {
           "status": 1,
           "price": 1000
         },
-        "DTYN|37485|20261218|XTRA LEGROOM": {
+        "DTYN|37485|20261218|PRIME": {
           "status": 1,
           "price": 1000
         },
@@ -14804,12 +14807,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37487|20261219|XTRA LEGROOM": {
+        "DTYN|37487|20261219|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37487|20261219|PRIME": {
+        "DTYN|37487|20261219|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -14862,14 +14865,14 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
+        "DTYN|37491|20261220|XTRA LEGROOM": {
+          "status": 1,
+          "price": 1000
+        },
         "DTYN|37491|20261220|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
-        },
-        "DTYN|37491|20261220|XTRA LEGROOM": {
-          "status": 1,
-          "price": 1000
         },
         "DTYN|37492|20261220|RECLINER": {
           "status": 0,
@@ -14905,14 +14908,14 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37494|20261220|PRIME": {
-          "status": 1,
-          "price": 1000
-        },
         "DTYN|37494|20261220|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
+        },
+        "DTYN|37494|20261220|PRIME": {
+          "status": 1,
+          "price": 1000
         },
         "DTYN|37495|20261220|RECLINER": {
           "status": 3,
@@ -14927,14 +14930,14 @@
           "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-23T12:39:05.089Z",
+      "lastCheckedAt": "2026-11-23T13:05:30.254Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 4
+    "okStreak": 5
   },
   "meta": {},
   "seats": {}
