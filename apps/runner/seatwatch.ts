@@ -24,6 +24,8 @@ export async function runSeatWatch(sw: SeatWatch, snapshot: Snap, mem: Record<st
   if (!picks.length) return b.complete ? "no matching shows listed yet" : `BookMyShow unreadable (${b.failures[0] || "no data"})`;
 
   const d = await snapshot(dt, [...new Set(picks.map((p) => p.dateCode))], [], sw.language);
+  if (!d.shows.length && !d.complete)
+    return `${picks.length} matching show(s) on BookMyShow, but District is unreadable from this network (${d.failures[0]?.replace(/^https?:\/\/\S+: /, "") || "no data"}), so seat maps can't be checked`;
   const dIdx = new Map(d.shows.map((s) => [`${s.venueCode}|${s.sessionId}`, s]));
   const jobs: (SeatJob & { show: Show; key: string })[] = [];
   let soldOut = 0, unmapped = 0;
