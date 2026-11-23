@@ -1,0 +1,34 @@
+{
+  "dailySummaryHourIST": 20,
+  "channels": {
+    "telegram": { "type": "telegram", "tokenEnv": "TELEGRAM_BOT_TOKEN", "chatIdsEnv": "TELEGRAM_CHAT_ID" },
+    "phone":    { "type": "ntfy", "topicEnv": "NTFY_TOPIC" },
+    "email":    { "type": "email", "apiKeyEnv": "RESEND_API_KEY", "fromEnv": "EMAIL_FROM", "toEnv": "EMAIL_TO" }
+  },
+  "watches": [
+    {
+      "id": "doomsday-ncr-imax",
+      "type": "movie",
+      "label": "Avengers: Doomsday (English) · NCR",
+      "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261217?etCodes=ET00526306&language=english&refEventCode=ET00526306",
+      "dates": ["2026-12-17..2026-12-25"],
+      "formats": ["IMAX", "PXL", "INFINITY_VISION"],
+      "cinemas": []
+    },
+    {
+      "id": "example-one-show-recliner",
+      "enabled": false,
+      "type": "show",
+      "label": "Example: one cinema, one show, 2 good seats",
+      "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261218",
+      "cinema": "PVR: Logix",
+      "dates": ["2026-12-18"],
+      "time": "19:30",
+      "toleranceMinutes": 60,
+      "formats": ["IMAX"],
+      "categories": ["recliner", "prime"],
+      "seats": { "count": 2, "areas": ["recliner", "prime"], "minScore": 0.6 },
+      "channels": ["telegram", "phone"]
+    }
+  ]
+}

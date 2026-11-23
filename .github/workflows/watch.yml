@@ -1,0 +1,65 @@
+name: CineAlert check
+
+on:
+  schedule:
+    - cron: "17 * * * *"      # hourly, off the :00 peak (GitHub may still start runs late)
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Check just this watch id (empty = all)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cinealert
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -q -r tools/requirements.txt
+
+      # State lives on its own "state" branch so main stays clean.
+      - name: Load state
+        run: |
+          git fetch -q origin state:state 2>/dev/null && git worktree add -q .state state \
+            || git worktree add -q --orphan -b state .state
+
+      - name: Check BookMyShow
+        env:
+          FETCHER: cffi
+          STATE_DIR: .state
+          ONLY_WATCH: ${{ inputs.only }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: node apps/runner/main.ts
+
+      - name: Save state
+        if: always()
+        run: |
+          cd .state
+          git config user.name "cinealert-bot"
+          git config user.email "cinealert-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -q -m "state $(date -u +%FT%TZ)"
+          git push -q origin state

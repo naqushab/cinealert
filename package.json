@@ -1,0 +1,15 @@
+{
+  "name": "cinealert",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Watch BookMyShow for shows, formats and seats; alert via Telegram, email, ntfy.",
+  "engines": { "node": ">=23.6" },
+  "scripts": {
+    "check": "node apps/runner/main.ts",
+    "dry": "node apps/runner/main.ts --dry-run",
+    "seats": "node apps/runner/seats.ts",
+    "inspect": "node apps/runner/inspect.ts",
+    "test": "node --test \"test/**/*.test.ts\""
+  }
+}
