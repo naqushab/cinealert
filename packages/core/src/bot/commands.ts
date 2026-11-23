@@ -127,12 +127,19 @@ function strip<T extends object>(o: T): T {
   return Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && !(Array.isArray(v) && !v.length))) as T;
 }
 
-export const HELP = `<b>CineAlert</b>
-<b>Easiest:</b> paste a BookMyShow or District link and tap through the guided setup (dates → formats → cinemas → time → seat class → seats → review).
-Power users can do it in one line:
-/add &lt;link&gt; dates=17-12..25-12 formats=pxl,4dx cinemas="logix,mall of india" times=evening,night class=recliner seats=2 max=1500
-/show &lt;link&gt; cinema=PVLE time=19:30 seats=2 class=recliner dates=18-12
-/best &lt;link&gt; date=18-12 seats=2 class=recliner time=19:30 lang=english   (best shows right now)
-/inspect &lt;link&gt;   (formats, open dates, cinema codes)
-/list · /pause &lt;id&gt; · /resume &lt;id&gt; · /remove &lt;id&gt; · /cancel (stop a setup)
-Formats: IMAX PXL INFINITY_VISION 4DX SCREENX ICE EPIQ DOLBY INSIGNIA 3D 2D`;
+export const HELP = `🎬 <b>CineAlert</b>
+
+<b>Easiest:</b> paste a BookMyShow or District link. I'll show what's listed and guide you with buttons:
+<i>dates → formats → cinemas → show time → seat class → seats → review</i>
+
+🏆 /best &lt;link&gt;: best shows to book right now
+🔎 /inspect &lt;link&gt;: formats, open dates, cinema codes
+📋 /list: your watches (pause, remove, best now)
+✖ /cancel: stop a setup
+
+<b>One-liners</b> (optional)
+<code>/add &lt;link&gt; dates=17-12..25-12 formats=pxl,4dx cinemas="logix" class=recliner seats=2</code>
+<code>/show &lt;link&gt; cinema=PVLE time=19:30 seats=2</code>
+<code>/best &lt;link&gt; date=18-12 seats=2 class=recliner time=19:30</code>
+
+Formats: IMAX · PXL · INFINITY_VISION · 4DX · SCREENX · ICE · EPIQ · DOLBY · INSIGNIA · 3D · 2D`;

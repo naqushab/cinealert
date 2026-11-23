@@ -1,56 +1,79 @@
-import type { Button, Change, Notification, Watch } from "../types.ts";
+import type { ActionButton, Button, Change, Notification, Show, Watch } from "../types.ts";
 import { rankShows } from "../rank.ts";
 
-const STATUS = ["🔴 Sold out", "🟡 Almost full", "🟠 Filling fast", "🟢 Available"];
-const ICON: Record<Change["kind"], string> = { DATE_OPENED: "📅", NEW_SHOW: "🆕", BACK_IN_STOCK: "🔁", STATUS_UP: "⬆️", SEATS_FOUND: "💺" };
+const DOT = ["🔴", "🟡", "🟠", "🟢"];
+const WORD = ["Sold out", "Almost full", "Filling fast", "Available"];
+const KIND: Record<Change["kind"], string> = { DATE_OPENED: "📅", NEW_SHOW: "🆕", BACK_IN_STOCK: "🔁 back", STATUS_UP: "⬆️", SEATS_FOUND: "💺" };
+const MAX_SHOWS = 12;
 
 export const prettyDate = (dc: string) => {
   const d = new Date(`${dc.slice(0, 4)}-${dc.slice(4, 6)}-${dc.slice(6, 8)}T00:00:00Z`);
   return d.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
 };
-const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-const seatsLeft = (c: Change) => (c.category?.seatsAvail !== undefined ? ` ${c.category.seatsAvail}/${c.category.seatsTotal} left` : "");
-const shortVenue = (v: string) => v.replace(/^(PVR|INOX|Cinepolis)\s*:\s*/i, "$1 ").split(",")[0].slice(0, 28);
+/** Escape for HTML (email) and Telegram HTML alike: only &amp; &lt; &gt; &quot; are used. */
+export const esc = (s: string) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const time12 = (s: Show) => s.time.replace(/^0/, "");
+const shortVenue = (v: string) => v.replace(/^(PVR|INOX|Cinepolis)\s*:\s*/i, "$1 ").split(",")[0].slice(0, 26);
+const fmtLine = (s: Show) => [s.format, s.screenAttr].filter(Boolean).join(" · ").replace(/\bMS[- ]+/gi, "");
+const seats = (c: Change) => (c.category?.seatsAvail !== undefined ? ` · ${c.category.seatsAvail}/${c.category.seatsTotal} left` : "");
 
 export function buildNotification(w: Watch, movieName: string, changes: Change[], sourceLabel = ""): Notification {
-  const name = (w.label || movieName || "Movie") + (sourceLabel ? ` [${sourceLabel}]` : "");
+  const name = w.label || movieName || "Movie";
   const opened = changes.filter((c) => c.kind === "DATE_OPENED");
   const title = opened.length
     ? `🎟️ ${name}: bookings open (${opened.map((c) => prettyDate(c.dateCode!)).join(", ")})`
-    : `🎟️ ${name}: ${changes.length} update(s)`;
+    : `🎟️ ${name}: ${changes.filter((c) => c.show).length} update(s)`;
 
-  // group category changes by show
+  // group: date → show → changed seat classes
   const byShow = new Map<string, Change[]>();
   for (const c of changes) if (c.show) {
-    const k = `${c.show.dateCode}|${c.show.venueCode}|${c.show.sessionId}`;
+    const k = `${c.show.dateCode}|${String(c.show.timeCode).padStart(4, "0")}|${c.show.venueName}|${c.show.sessionId}`;
     byShow.set(k, [...(byShow.get(k) || []), c]);
   }
-  const lines: string[] = [], html: string[] = [];
-  for (const c of opened) { lines.push(`📅 ${prettyDate(c.dateCode!)} is open → ${c.link}`); html.push(`<b>📅 ${prettyDate(c.dateCode!)}</b> is open — <a href="${c.link}">book</a>`); }
-  const shows = [...byShow.values()].sort((a, b) => (a[0].show!.dateCode + String(a[0].show!.timeCode).padStart(4, "0")).localeCompare(b[0].show!.dateCode + String(b[0].show!.timeCode).padStart(4, "0")));
-  for (const group of shows.slice(0, 25)) {
-    const s = group[0].show!;
-    const fmt = [s.format, s.screenAttr].filter(Boolean).join(" · ");
-    const cats = group.map((c) => `${ICON[c.kind]} ${c.category!.name} ₹${c.category!.price} ${STATUS[c.category!.status] || ""}${seatsLeft(c)}${c.detail ? ` (${c.detail})` : ""}`).join("; ");
-    lines.push(`${prettyDate(s.dateCode)} ${s.time} · ${s.venueName}${fmt ? ` · ${fmt}` : ""}\n   ${cats}\n   ${group[0].link}`);
-    html.push(`<b>${prettyDate(s.dateCode)} ${esc(s.time)}</b> · ${esc(s.venueName)}${fmt ? ` · <i>${esc(fmt)}</i>` : ""}<br>&nbsp;&nbsp;${esc(cats)} — <a href="${group[0].link}">seats</a>`);
+  const groups = [...byShow.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, g]) => g);
+  const shown = groups.slice(0, MAX_SHOWS);
+
+  // ---------- Telegram ----------
+  const tg: string[] = [`🎟️ <b>${esc(name)}</b>${sourceLabel ? ` · ${esc(sourceLabel)}` : ""}`];
+  if (opened.length) tg.push(`📅 <b>Bookings open:</b> ${opened.map((c) => `<a href="${esc(c.link)}">${prettyDate(c.dateCode!)}</a>`).join(", ")}`);
+  let lastDate = "";
+  for (const g of shown) {
+    const s = g[0].show!;
+    if (s.dateCode !== lastDate) { tg.push("", `<b>${prettyDate(s.dateCode)}</b>`); lastDate = s.dateCode; }
+    tg.push(`🕖 <b>${esc(time12(s))}</b> · ${esc(s.venueName)}`);
+    if (fmtLine(s)) tg.push(`      <i>${esc(fmtLine(s))}</i>`);
+    for (const c of g) tg.push(`      ${DOT[c.category!.status] || "⚪"} ${esc(c.category!.name)} ₹${c.category!.price}${esc(seats(c))} ${KIND[c.kind]}${c.detail ? `\n      💺 ${esc(c.detail)}` : ""}`);
+    tg.push(`      <a href="${esc(g[0].link)}">Book this show →</a>`);
   }
-  if (shows.length > 25) { lines.push(`...and ${shows.length - 25} more shows`); html.push(`...and ${shows.length - 25} more shows`); }
-  // Fast path to booking: one button per best new show (ranked), then the date page.
-  const uniq = [...byShow.values()].map((g) => g[0]);
+  if (groups.length > MAX_SHOWS) tg.push("", `<i>...and ${groups.length - MAX_SHOWS} more show(s). Tap "Best now" for the top picks.</i>`);
+
+  // ---------- plain text (ntfy) & email HTML ----------
+  const text: string[] = [], html: string[] = [];
+  for (const c of opened) { text.push(`📅 ${prettyDate(c.dateCode!)} is open → ${c.link}`); html.push(`<p><b>📅 ${prettyDate(c.dateCode!)}</b> is open: <a href="${esc(c.link)}">all shows</a></p>`); }
+  for (const g of shown) {
+    const s = g[0].show!;
+    const cats = g.map((c) => `${DOT[c.category!.status] || ""} ${c.category!.name} ₹${c.category!.price} ${WORD[c.category!.status] || ""}${seats(c)}`);
+    text.push(`${prettyDate(s.dateCode)} ${time12(s)} · ${s.venueName}${fmtLine(s) ? ` · ${fmtLine(s)}` : ""}\n  ${cats.join("\n  ")}`);
+    html.push(`<p><b>${prettyDate(s.dateCode)} ${esc(time12(s))}</b> · ${esc(s.venueName)}${fmtLine(s) ? ` · <i>${esc(fmtLine(s))}</i>` : ""}<br>${cats.map(esc).join("<br>")}<br><a href="${esc(g[0].link)}">Book this show</a></p>`);
+  }
+  if (groups.length > MAX_SHOWS) { text.push(`...and ${groups.length - MAX_SHOWS} more`); html.push(`<p>...and ${groups.length - MAX_SHOWS} more shows</p>`); }
+
+  // ---------- buttons ----------
+  const uniq = groups.map((g) => g[0]);
   const ranked = rankShows(uniq.map((c) => c.show!), { seats: w.minSeats, categories: w.categories, preferTime: w.type === "show" ? w.time : undefined }, 3);
-  const buttons: Button[] = ranked.map((r) => {
-    const c = uniq.find((x) => x.show === r.show)!;
-    return { text: `${prettyDate(r.show.dateCode)} ${r.show.time} · ${shortVenue(r.show.venueName)}`.slice(0, 60), url: c.link };
-  });
-  for (const c of opened.slice(0, 2)) buttons.push({ text: `All shows · ${prettyDate(c.dateCode!)}`, url: c.link });
+  const buttons: Button[] = ranked.map((r) => ({
+    text: `🎟️ ${prettyDate(r.show.dateCode).replace(/^\w+, /, "")} ${time12(r.show)} · ${shortVenue(r.show.venueName)}`.slice(0, 60),
+    url: uniq.find((x) => x.show === r.show)!.link,
+  }));
+  for (const c of opened.slice(0, 2)) buttons.push({ text: `📅 All shows · ${prettyDate(c.dateCode!)}`, url: c.link });
+  const actions: ActionButton[] = [
+    { text: "🏆 Best now", data: `a|best|${w.id}` },
+    { text: "🔕 Snooze 6h", data: `a|snooze|${w.id}|6` },
+    { text: "⏸ Pause", data: `a|pause|${w.id}` },
+  ];
   return {
-    buttons,
-    title,
-    text: lines.join("\n"),
-    html: html.join("<br>"),
+    title, text: text.join("\n"), html: html.join(""), tg: tg.join("\n"),
     link: opened[0]?.link || changes[0]?.link || w.url,
-    priority: opened.length ? "urgent" : "high",
+    priority: opened.length ? "urgent" : "high", buttons, actions,
   };
 }

@@ -4,11 +4,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import { HELP, parseCommand } from "../../packages/core/src/index.ts";
 import type { Command, Draft, Watch } from "../../packages/core/src/index.ts";
 
-export interface BotStore { offset: number; nextId: number; watches: Watch[]; paused: string[]; drafts: Record<string, Draft> }
+export interface BotStore { offset: number; nextId: number; watches: Watch[]; paused: string[]; drafts: Record<string, Draft>; muted: Record<string, string>; lastUrl: Record<string, string>; removed?: Watch[] }
 const FILE = (dir: string) => `${dir}/bot.json`;
 
 export async function loadBot(dir: string): Promise<BotStore> {
-  const empty: BotStore = { offset: 0, nextId: 1, watches: [], paused: [], drafts: {} };
+  const empty: BotStore = { offset: 0, nextId: 1, watches: [], paused: [], drafts: {}, muted: {}, lastUrl: {}, removed: [] };
   try { return { ...empty, ...JSON.parse(await readFile(FILE(dir), "utf8")) }; } catch { return empty; }
 }
 export const saveBot = (dir: string, b: BotStore) => writeFile(FILE(dir), JSON.stringify(b, null, 2) + "\n");
@@ -29,8 +29,8 @@ export async function reply(tg: Tg, chat: string, html: string): Promise<void> {
     await tgCall(tg, "sendMessage", { chat_id: chat, text: html.slice(i, i + 3800), parse_mode: "HTML", disable_web_page_preview: true });
 }
 
-type KB = { text: string; data: string }[][];
-const markup = (kb: KB) => ({ inline_keyboard: kb.map((row) => row.map((b) => ({ text: b.text, callback_data: b.data }))) });
+type KB = { text: string; data?: string; url?: string }[][];
+const markup = (kb: KB) => ({ inline_keyboard: kb.filter((r) => r.length).map((row) => row.map((b) => (b.url ? { text: b.text, url: b.url } : { text: b.text, callback_data: b.data! }))) });
 
 /** Sends or edits the wizard card. Returns the message id. */
 export async function card(tg: Tg, chat: string, html: string, kb: KB, msgId?: number): Promise<number> {

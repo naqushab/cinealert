@@ -109,7 +109,13 @@ export interface Change {
 }
 
 export interface Button { text: string; url: string }
-export interface Notification { title: string; text: string; html: string; link: string; priority: "default" | "high" | "urgent"; buttons?: Button[] }
+export interface ActionButton { text: string; data: string }   // Telegram callback button (≤64-byte data)
+export interface Notification {
+  title: string; text: string; html: string; link: string; priority: "default" | "high" | "urgent";
+  buttons?: Button[];          // URL buttons (booking)
+  tg?: string;                 // Telegram-flavoured HTML (only <b><i><a><code>, \n line breaks)
+  actions?: ActionButton[];    // callback buttons (pause, snooze, best now...)
+}
 
 export interface Notifier { name: string; send(n: Notification): Promise<void> }
 

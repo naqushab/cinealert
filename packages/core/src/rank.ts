@@ -23,14 +23,14 @@ export function rankShows(shows: Show[], p: RankPrefs, top = 5): RankedShow[] {
       const why: string[] = [];
       // availability: exact ratio when known, else BMS status 1..3
       const avail = c.seatsAvail !== undefined && c.seatsTotal ? c.seatsAvail / c.seatsTotal : (c.status as number) / 3;
-      let score = 0.5 * avail;
+      let score = 0.4 * avail;
       why.push(c.seatsAvail !== undefined ? `${c.seatsAvail}/${c.seatsTotal} left` : ["", "almost full", "filling fast", "available"][c.status]);
-      if (p.categories?.length) { score += 0.2; why.push("preferred class"); }
+      if (p.categories?.length) { score += 0.15; why.push("preferred class"); }
       if (p.formats?.length) { score += 0.1; }
       if (p.preferTime) {
         const d = Math.abs(mins(s.timeCode) - mins(+p.preferTime.replace(":", "")));
-        score += 0.2 * Math.max(0, 1 - d / 180);
-        if (d <= 30) why.push("near your time");
+        score += 0.45 * Math.max(0, 1 - d / 150);
+        if (d <= 45) why.push(d === 0 ? "at your time" : `${d} min from your time`);
       } else score += 0.1;
       out.push({ show: s, category: c, score: +score.toFixed(3), why });
     }

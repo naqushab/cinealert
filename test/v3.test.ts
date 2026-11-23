@@ -106,3 +106,12 @@ test("wizard: typed unknown cinema is kept as a watched name; Any skips", () => 
   assert.deepEqual(d.sel.cinemas, []);
   assert.equal(d.step, "times");
 });
+
+test("best: preferred time outranks emptier halls far from it", async () => {
+  const { rankShows } = await import("../packages/core/src/index.ts");
+  const mk = (id: string, tc: number, avail: number) => ({ venueCode: id, venueName: id, sessionId: id, eventCode: "e", dateCode: "20261218", time: String(tc), timeCode: tc, format: "", screenAttr: "",
+    categories: [{ name: "RECLINER", price: 900, status: 3 as const, seatsAvail: avail, seatsTotal: 20 }] });
+  const r = rankShows([mk("morning", 615, 20), mk("evening", 1915, 6)], { seats: 2, categories: ["recliner"], preferTime: "19:30" });
+  assert.equal(r[0].show.venueCode, "evening");
+  assert.ok(r[0].why.includes("15 min from your time"));
+});

@@ -8,8 +8,9 @@ export function telegram(token: string, chatIds: string[], f: Fetch = fetch): No
   return {
     name: "telegram",
     async send(n: Notification) {
-      // Telegram caps messages at 4096 chars; split on line boundaries.
-      const body = `<b>${n.title.replace(/</g, "&lt;")}</b>\n\n${n.html.replace(/<br>/g, "\n")}`;
+      // Telegram HTML: only <b><i><a><code> and \n; entities limited to &lt; &gt; &amp; &quot;. Max 4096 chars.
+      const esc = (x: string) => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const body = n.tg || `<b>${esc(n.title)}</b>\n\n${esc(n.text)}`;
       const chunks: string[] = [];
       let cur = "";
       for (const line of body.split("\n")) {
@@ -17,15 +18,23 @@ export function telegram(token: string, chatIds: string[], f: Fetch = fetch): No
         cur += line + "\n";
       }
       if (cur.trim()) chunks.push(cur);
+      const keyboard = [
+        ...(n.buttons?.length ? n.buttons : [{ text: "🎟️ Book now", url: n.link }]).slice(0, 5).map((b) => [{ text: b.text, url: b.url }]),
+        ...(n.actions?.length ? [n.actions.slice(0, 4).map((a) => ({ text: a.text, callback_data: a.data }))] : []),
+      ];
       for (const chat_id of chatIds) {
         for (let i = 0; i < chunks.length; i++) {
           const payload: Record<string, unknown> = { chat_id, text: chunks[i], parse_mode: "HTML", disable_web_page_preview: true };
-          if (i === chunks.length - 1) payload.reply_markup = { inline_keyboard: (n.buttons?.length ? n.buttons : [{ text: "🎟️ Book now", url: n.link }]).slice(0, 6).map((b) => [{ text: b.text, url: b.url }]) };
+          if (i === chunks.length - 1) payload.reply_markup = { inline_keyboard: keyboard };
           for (let attempt = 0; ; attempt++) {
             const r = await f(`https://api.telegram.org/bot${token}/sendMessage`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
             if (r.ok) break;
             const j: any = await r.json().catch(() => ({}));
             if (r.status === 429 && attempt < 3) { await sleep(Math.min(30, j?.parameters?.retry_after ?? 5) * 1000); continue; }
+            // Formatting rejected? Send plain text rather than lose the alert.
+            if (r.status === 400 && /parse entities/i.test(j?.description || "") && payload.parse_mode) {
+              delete payload.parse_mode; payload.text = `${n.title}\n\n${n.text}`.slice(0, 4000); continue;
+            }
             throw new Error(`telegram ${chat_id}: HTTP ${r.status} ${j?.description || ""}`);
           }
         }
@@ -54,7 +63,7 @@ export function resendEmail(apiKey: string, from: string, to: string[], f: Fetch
   return {
     name: "email",
     async send(n: Notification) {
-      const html = `<div style="font-family:sans-serif"><h2>${n.title}</h2><p>${n.html}</p><p>${(n.buttons?.length ? n.buttons : [{ text: "Book now", url: n.link }]).map((b) => `<a href="${b.url}" style="display:inline-block;margin:4px;background:#f84464;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">${b.text}</a>`).join("")}</p></div>`;
+      const html = `<div style="font-family:sans-serif"><h2>${n.title.replace(/</g, "&lt;")}</h2>${n.html}<p>${(n.buttons?.length ? n.buttons : [{ text: "Book now", url: n.link }]).map((b) => `<a href="${b.url}" style="display:inline-block;margin:4px;background:#f84464;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">${b.text}</a>`).join("")}</p></div>`;
       const r = await f("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },

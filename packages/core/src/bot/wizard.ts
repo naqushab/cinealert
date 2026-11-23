@@ -119,24 +119,26 @@ const HINTS: Partial<Record<Step, string>> = {
   seats: "District alerts only when this many seats are left in your class.",
 };
 
+const esc = (x: string) => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 export function summary(d: Draft): string {
   const s = d.sel;
   const cin = s.cinemas.map((c) => d.opts.cinemas.find(([x]) => x === c)?.[1] || c);
   return [
-    s.lang && `Language: ${s.lang}`,
-    `Dates: ${s.dates.length ? s.dates.map((x) => x.includes("..") ? x : prettyDate(x.replace(/-/g, ""))).join(", ") : "any"}`,
-    `Formats: ${s.formats.join(", ").replace(/_/g, " ") || "any"}`,
-    `Cinemas: ${cin.join("; ") || "any"}`,
-    s.time ? `Show: ${s.time}` : `Times: ${s.times.join(", ") || "any"}`,
-    `Seat class: ${s.classes.join(", ") || "any"}`,
-    s.seats ? `Seats: ${s.seats}+` : "",
+    s.lang && `🗣 <b>Language</b>  ${esc(s.lang)}`,
+    `📅 <b>Dates</b>  ${s.dates.length ? s.dates.map((x) => x.includes("..") ? x : prettyDate(x.replace(/-/g, ""))).join(", ") : "any"}`,
+    `🎞 <b>Formats</b>  ${esc(s.formats.join(", ").replace(/_/g, " ")) || "any"}`,
+    `🏢 <b>Cinemas</b>  ${esc(cin.join("; ")) || "any"}`,
+    s.time ? `🕖 <b>Show</b>  ${s.time}` : `🕖 <b>Times</b>  ${s.times.join(", ") || "any"}`,
+    `💺 <b>Seat class</b>  ${esc(s.classes.join(", ")) || "any"}`,
+    s.seats ? `👥 <b>Seats</b>  ${s.seats}+` : "",
   ].filter(Boolean).join("\n");
 }
 
 export function render(d: Draft, reviewNotes = ""): { text: string; keyboard: KB[][] } {
   const st = steps(d);
   const n = st.indexOf(d.step) + 1;
-  const head = `🎬 <b>${d.movie}</b> · ${d.source === "district" ? "District" : "BookMyShow"} · ${d.city}\nStep ${n}/${st.length}: <b>${TITLES[d.step]}</b>`;
+  const head = `🎬 <b>${esc(d.movie)}</b> · ${d.source === "district" ? "District" : "BookMyShow"} · ${esc(d.city)}\n<b>Step ${n}/${st.length} · ${TITLES[d.step]}</b>`;
   const cb = (op: string, arg = "") => `${d.id}|${op}|${arg}`;
   const kb: KB[][] = [];
   if (d.step === "review") {

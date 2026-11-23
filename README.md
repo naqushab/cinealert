@@ -35,6 +35,19 @@ so "does this hall exist / does it ever show PXL" gets more accurate over time, 
 
 Taps are handled while the workflow listens (see `BOT_LISTEN_SECONDS` below). An unfinished setup expires after 2 days; `/cancel` stops it.
 
+## Buttons
+
+| Where | Buttons |
+|---|---|
+| Alert | 🎟️ book the 3 best new shows · 📅 all shows for an opened date · 🏆 Best now · 🔕 Snooze 6h · ⏸ Pause |
+| `/list` | per watch: 🏆 best now · ⏸ Pause / ▶️ Resume · 🗑 Remove (asks to confirm, with ↩️ Undo) |
+| `/best` | one ↗ booking button per ranked show · ➕ Watch this movie |
+| `/inspect` | ➕ Watch this movie (starts the guided add) · 🏆 Best now |
+| After saving | 🏆 Best now · ⏸ Pause · 📋 My watches |
+
+Booking (↗) buttons always work. The other buttons are answered while a run is listening (`BOT_LISTEN_SECONDS`).
+Snoozing skips alerts for that watch until the time is up; 🔔 Unsnooze ends it early.
+
 ## Telegram commands (one-liners)
 
 Only chats listed in `TELEGRAM_CHAT_ID` are obeyed. One-line `/add ...` is validated the same way:
