@@ -19,3 +19,4 @@ export * from "./bot/commands.ts";
 export * from "./catalog.ts";
 export * from "./validate.ts";
 export * from "./bot/wizard.ts";
+export * from "./seats/district.ts";

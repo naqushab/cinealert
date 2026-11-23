@@ -24,6 +24,7 @@ export interface Show {
   timeCode: number;    // 1930
   format: string;      // format chip title, e.g. "IMAX 3D"
   screenAttr: string;  // screen label, e.g. "PXL", "INSIGNIA"
+  bookingRef?: string; // District encSessionId (needed for its seat-layout page)
   categories: Category[];
 }
 
@@ -60,6 +61,9 @@ export interface SeatPrefs {
   idealDepth?: number;        // 0 = front row, 1 = last row. Default 0.65
   minDepth?: number;          // reject rows closer than this. Default 0.3
   minScore?: number;          // 0..1, alert only above this. Default 0.6
+  fromRow?: string;           // only rows at/behind this label, e.g. "G" (A = front)
+  toRow?: string;
+  centre?: number;            // max offset of the block's middle from the centre, as a fraction of half-width (0.5 = middle half)
 }
 
 export interface WatchBase {

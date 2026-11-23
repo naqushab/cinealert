@@ -87,6 +87,7 @@ export function districtShows(state: J, fmtGrpId: string): Show[] {
           timeCode: timeCode(s?.showTimeLocal, s?.showTimeText),
           format: "",
           screenAttr: [s?.scrnFmt, s?.audi].filter(Boolean).join(" · "),
+          bookingRef: s?.encSessionId ? String(s.encSessionId) : undefined,
           categories,
         });
       }

@@ -113,5 +113,39 @@
         "phone"
       ]
     }
+  ],
+  "seatWatches": [
+    {
+      "id": "doomsday-seats-noida",
+      "label": "Doomsday PXL/IMAX · 2 middle seats, row G+",
+      "bms": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261217?language=english",
+      "district": "https://www.district.in/movies/avengers-doomsday-movie-tickets-in-delhi-ncr-MV176735",
+      "language": "english",
+      "cinemas": [
+        {
+          "bms": "DTYN",
+          "district": "1024358",
+          "name": "PVR Superplex Mall of India"
+        },
+        {
+          "bms": "PVLE",
+          "district": "1024414",
+          "name": "PVR Superplex Logix"
+        }
+      ],
+      "formats": [
+        "PXL",
+        "IMAX"
+      ],
+      "dates": [
+        "2026-12-17..2026-12-22"
+      ],
+      "seats": {
+        "count": 2,
+        "fromRow": "G",
+        "centre": 0.5
+      },
+      "maxPerRun": 30
+    }
   ]
 }

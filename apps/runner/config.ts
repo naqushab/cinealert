@@ -3,7 +3,8 @@ import type { Notifier, Watch } from "../../packages/core/src/index.ts";
 import { consoleNotifier, ntfy, resendEmail, telegram, webhook } from "../../packages/core/src/index.ts";
 
 export interface ChannelCfg { type: "telegram" | "ntfy" | "email" | "webhook"; [k: string]: string }
-export interface Config { channels: Record<string, ChannelCfg>; watches: Watch[]; dailySummaryHourIST?: number }
+import type { SeatWatch } from "./seatwatch.ts";
+export interface Config { channels: Record<string, ChannelCfg>; watches: Watch[]; seatWatches?: SeatWatch[]; dailySummaryHourIST?: number }
 
 export async function loadConfig(path = process.env.WATCHES_FILE || "watches.json"): Promise<Config> {
   const cfg = JSON.parse(await readFile(path, "utf8")) as Config;

@@ -10,6 +10,7 @@ import {
 import type { Catalog, Change, Command, Draft, SeatLayoutProvider, ShowWatch, Snapshot, State, Watch, WatchTarget } from "../../packages/core/src/index.ts";
 import { buildNotifiers, loadConfig } from "./config.ts";
 import { pickFetcher } from "./fetchers.ts";
+import { runSeatWatch } from "./seatwatch.ts";
 import { groupKey, makeClients, snapshotFor } from "./sources.ts";
 import { HELP, ack, card, describeWatch, loadBot, pull, reply, saveBot } from "./bot.ts";
 import type { Incoming, Tg } from "./bot.ts";
@@ -22,6 +23,7 @@ const STATE_FILE = `${STATE_DIR}/state.json`;
 const CATALOG_FILE = `${STATE_DIR}/catalog.json`;
 const LISTEN = Number(process.env.BOT_LISTEN_SECONDS || 0);
 const RECHECK_MS = Number(process.env.RECHECK_MINUTES || 0) * 60_000;   // re-run checks while listening
+const SEAT_MS = Number(process.env.SEAT_RECHECK_MINUTES || 20) * 60_000;  // seat-map reads are heavier: own timer
 const log = (s: string) => console.log(s);
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -62,7 +64,10 @@ async function main() {
   const clients = makeClients(pickFetcher(), log);
   const tgToken = (process.env.TELEGRAM_BOT_TOKEN || "").trim();
   const tg: Tg | null = tgToken && !dryRun ? { token: tgToken, allowed: new Set((process.env.TELEGRAM_CHAT_ID || "").split(",").map((s) => s.trim()).filter(Boolean)) } : null;
-  const watches = (): Watch[] => [...cfg.watches, ...bot.watches].map((w) => (bot.paused.includes(w.id) ? { ...w, enabled: false } : w));
+  const seatAsWatch = (cfg.seatWatches || []).map((sw) => ({ id: sw.id, type: "movie", label: `💺 ${sw.label || sw.id}`, url: sw.bms, dates: sw.dates, formats: sw.formats,
+    cinemas: sw.cinemas.map((c) => c.name || c.bms), enabled: sw.enabled }) as Watch);
+  const seatIds = new Set(seatAsWatch.map((w) => w.id));
+  const watches = (): Watch[] => [...cfg.watches, ...seatAsWatch, ...bot.watches].map((w) => (bot.paused.includes(w.id) ? { ...w, enabled: false } : w));
   // Every snapshot also teaches the cinema catalogue (cinemas + formats they screen).
   const snapshot = async (t: WatchTarget, dates: string[], formats: string[], lang?: string): Promise<Snapshot> => {
     const snap = await snapshotFor(clients, t, dates, formats, lang);
@@ -331,12 +336,31 @@ async function main() {
     return added;
   }
 
+  // ---------------- seat-level watches ----------------
+  async function seatPass(): Promise<void> {
+    const list = (cfg.seatWatches || []).filter((w) => w.enabled !== false && !bot.paused.includes(w.id) && (!only || w.id === only));
+    if (!list.length) return;
+    const mem: Record<string, string> = ((state as any).seats ||= {});
+    for (const sw of list) {
+      try {
+        const chans = sw.channels?.length ? sw.channels.map((n) => notifiers[n]).filter(Boolean) : Object.values(notifiers);
+        const muted = bot.muted[sw.id] && Date.parse(bot.muted[sw.id]) > Date.now();
+        const r = await runSeatWatch(sw, snapshot, mem, (n) => (muted ? Promise.resolve(true) : dispatch({ ...n, actions: [{ text: "🔕 Snooze 6h", data: `a|snooze|${sw.id}|6` }, { text: "⏸ Pause", data: `a|pause|${sw.id}` }] }, chans, log)), log);
+        (state.watches[sw.id] ||= { dates: [], cats: {} }).lastResult = `seats: ${r}${muted ? " (snoozed)" : ""}`;
+        state.watches[sw.id].lastCheckedAt = new Date().toISOString();
+        log(`  💺 ${sw.id}: ${r}`);
+      } catch (e) { log(`  💺 ${sw.id}: failed ${(e as Error).message}`); }
+    }
+  }
+
   // ---------------- run ----------------
   log(`[${new Date().toISOString()}] CineAlert${dryRun ? " (dry run)" : ""}`);
   await processCommands(0);
-  const active = watches().filter((w) => w.enabled !== false && (!only || w.id === only));
+  const active = watches().filter((w) => w.enabled !== false && !seatIds.has(w.id) && (!only || w.id === only));
   log(`${active.length} active watch(es)`);
   const r = await check(active);
+  await seatPass();
+  let lastSeat = Date.now();
 
   const h = healthUpdate(state, r.ok || !r.fail);
   if (h === "warn") await dispatch({ title: "⚠️ CineAlert can't read the ticket sites", text: "3 checks in a row got no data (probably refusing GitHub's servers). Check the apps manually; I'll tell you when it works again.", html: "3 checks in a row got no data.", link: "https://in.bookmyshow.com", priority: "high" }, Object.values(notifiers), log);
@@ -359,10 +383,11 @@ async function main() {
     if (added.length) await check(added);
     if (RECHECK_MS && Date.now() - lastCheck >= RECHECK_MS) {
       lastCheck = Date.now();
-      const again = watches().filter((w) => w.enabled !== false && (!only || w.id === only));
+      const again = watches().filter((w) => w.enabled !== false && !seatIds.has(w.id) && (!only || w.id === only));
       log(`↻ re-check ${new Date().toISOString()}`);
       await check(again);
     }
+    if (Date.now() - lastSeat >= SEAT_MS) { lastSeat = Date.now(); await seatPass(); }
   }
 
   if (!dryRun) {
