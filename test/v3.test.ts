@@ -115,3 +115,10 @@ test("best: preferred time outranks emptier halls far from it", async () => {
   assert.equal(r[0].show.venueCode, "evening");
   assert.ok(r[0].why.includes("15 min from your time"));
 });
+
+test("District PXL screen label and cinema codes", async () => {
+  const { formatMatches, cinemaMatches } = await import("../packages/core/src/index.ts");
+  assert.ok(formatMatches("English MS INFINITY VISION 3D · SCREEN 1", "SCREEN 1"));
+  assert.ok(!formatMatches("English MS INFINITY VISION 3D · SCREEN 10", "SCREEN 1"));
+  assert.ok(cinemaMatches({ venueCode: "D1024358", venueName: "PVR Superplex Mall Of India" } as any, "D1024358"));
+});

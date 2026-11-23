@@ -37,7 +37,7 @@ const minutes = (hhmm: number) => Math.floor(hhmm / 100) * 60 + (hhmm % 100);
 
 export function cinemaMatches(show: Show, spec: string): boolean {
   const s = spec.trim();
-  if (/^[A-Z0-9]{3,6}$/.test(s) && show.venueCode === s) return true;
+  if (/^D?[A-Z0-9]{3,8}$/.test(s) && show.venueCode === s) return true;   // BMS "DTYN", District "D1024358"
   return show.venueName.toLowerCase().includes(s.toLowerCase());
 }
 

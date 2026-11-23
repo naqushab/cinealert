@@ -48,6 +48,8 @@ jobs:
           # Seconds to keep answering Telegram commands live after the check (0 = reply on next run).
           # Repo variable; e.g. 1500 on a public repo gives near-instant replies ~25 min of every hour.
           BOT_LISTEN_SECONDS: ${{ vars.BOT_LISTEN_SECONDS || '0' }}
+          # Re-run all checks every N minutes during the listen window (0 = once per run).
+          RECHECK_MINUTES: ${{ vars.RECHECK_MINUTES || '0' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}

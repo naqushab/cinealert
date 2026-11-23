@@ -25,7 +25,7 @@ const norm = (s: string) => ` ${s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim
 
 export function formatMatches(label: string, wanted: string): boolean {
   const hay = norm(label);
-  return aliasesFor(wanted).some((a) => hay.includes(norm(a)) || hay.replace(/ /g, "").includes(a.replace(/[^a-z0-9]/g, "")));
+  return aliasesFor(wanted).some((a) => hay.includes(norm(a)) || (!/\d$/.test(a) && hay.replace(/ /g, "").includes(a.replace(/[^a-z0-9]/g, ""))));
 }
 
 export function showFormatLabel(format: string, screenAttr: string): string {

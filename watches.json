@@ -49,6 +49,39 @@
       "minSeats": 2
     },
     {
+      "id": "doomsday-dtyn-pxl-bms",
+      "type": "movie",
+      "label": "Doomsday PXL · PVR Superplex Mall of India (BMS)",
+      "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261221?language=english",
+      "cinemas": [
+        "DTYN"
+      ],
+      "formats": [
+        "PXL"
+      ],
+      "dates": [
+        "2026-12-21",
+        "2026-12-22"
+      ]
+    },
+    {
+      "id": "doomsday-dtyn-pxl-district",
+      "type": "movie",
+      "label": "Doomsday PXL (Screen 1) · PVR Superplex Mall of India (District)",
+      "url": "https://www.district.in/movies/avengers-doomsday-movie-tickets-in-delhi-ncr-MV176735",
+      "language": "english",
+      "cinemas": [
+        "D1024358"
+      ],
+      "formats": [
+        "SCREEN 1"
+      ],
+      "dates": [
+        "2026-12-21",
+        "2026-12-22"
+      ]
+    },
+    {
       "id": "example-one-show-recliner",
       "enabled": false,
       "type": "show",

@@ -21,6 +21,7 @@ const STATE_DIR = process.env.STATE_DIR || "state";
 const STATE_FILE = `${STATE_DIR}/state.json`;
 const CATALOG_FILE = `${STATE_DIR}/catalog.json`;
 const LISTEN = Number(process.env.BOT_LISTEN_SECONDS || 0);
+const RECHECK_MS = Number(process.env.RECHECK_MINUTES || 0) * 60_000;   // re-run checks while listening
 const log = (s: string) => console.log(s);
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -351,9 +352,17 @@ async function main() {
 
   // Optional listening window: near-instant replies; new watches are checked right away.
   const until = Date.now() + LISTEN * 1000;
-  while (tg && Date.now() < until - 5000) {
-    const added = await processCommands(Math.min(50, Math.floor((until - Date.now()) / 1000) - 5));
+  let lastCheck = Date.now();
+  while (Date.now() < until - 5000) {
+    const wait = Math.min(50, Math.floor((until - Date.now()) / 1000) - 5);
+    const added = tg ? await processCommands(wait) : (await new Promise((r) => setTimeout(r, wait * 1000)), []);
     if (added.length) await check(added);
+    if (RECHECK_MS && Date.now() - lastCheck >= RECHECK_MS) {
+      lastCheck = Date.now();
+      const again = watches().filter((w) => w.enabled !== false && (!only || w.id === only));
+      log(`↻ re-check ${new Date().toISOString()}`);
+      await check(again);
+    }
   }
 
   if (!dryRun) {
