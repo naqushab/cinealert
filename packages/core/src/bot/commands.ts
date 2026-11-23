@@ -14,6 +14,8 @@ export type Command =
   | { cmd: "pause" | "resume" | "remove"; id: string }
   | { cmd: "add"; watch: Omit<MovieWatch, "id"> | Omit<ShowWatch, "id"> }
   | { cmd: "inspect"; url: string }
+  | { cmd: "wizard"; url: string }
+  | { cmd: "cancel" }
   | { cmd: "best"; url: string; dates: string[]; language?: string; seats?: number; categories?: string[]; formats?: string[]; times?: string[]; time?: string; maxPrice?: number }
   | { cmd: "error"; message: string };
 
@@ -69,6 +71,7 @@ export function parseCommand(text: string, today = new Date()): Command {
   const cmd = head.toLowerCase().replace(/@\w+$/, "").slice(1);
   if (cmd === "start" || cmd === "help") return { cmd: "help" };
   if (cmd === "list") return { cmd: "list" };
+  if (cmd === "cancel") return { cmd: "cancel" };
   if (cmd === "pause" || cmd === "resume" || cmd === "remove" || cmd === "delete") {
     if (!rest[0]) return { cmd: "error", message: `usage: /${cmd} <id>  (ids are in /list)` };
     return { cmd: cmd === "delete" ? "remove" : cmd, id: rest[0] };
@@ -80,6 +83,8 @@ export function parseCommand(text: string, today = new Date()): Command {
   let target;
   try { target = parseWatchUrl(url); } catch (e) { return { cmd: "error", message: (e as Error).message }; }
   if (cmd === "inspect") return { cmd: "inspect", url };
+  // No options given → guided setup with buttons.
+  if ((cmd === "add" || cmd === "watch") && !rest.some((t) => /^[a-zA-Z]+=/.test(t))) return { cmd: "wizard", url };
 
   const hintMonth = target.dateCode ? +target.dateCode.slice(4, 6) : undefined;
   const o: Record<string, string> = {};
@@ -122,11 +127,12 @@ function strip<T extends object>(o: T): T {
   return Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && !(Array.isArray(v) && !v.length))) as T;
 }
 
-export const HELP = `<b>CineAlert commands</b>
-Paste a BookMyShow or District link to watch it, or:
+export const HELP = `<b>CineAlert</b>
+<b>Easiest:</b> paste a BookMyShow or District link and tap through the guided setup (dates → formats → cinemas → time → seat class → seats → review).
+Power users can do it in one line:
 /add &lt;link&gt; dates=17-12..25-12 formats=pxl,4dx cinemas="logix,mall of india" times=evening,night class=recliner seats=2 max=1500
 /show &lt;link&gt; cinema=PVLE time=19:30 seats=2 class=recliner dates=18-12
 /best &lt;link&gt; date=18-12 seats=2 class=recliner time=19:30 lang=english   (best shows right now)
 /inspect &lt;link&gt;   (formats, open dates, cinema codes)
-/list · /pause &lt;id&gt; · /resume &lt;id&gt; · /remove &lt;id&gt;
+/list · /pause &lt;id&gt; · /resume &lt;id&gt; · /remove &lt;id&gt; · /cancel (stop a setup)
 Formats: IMAX PXL INFINITY_VISION 4DX SCREENX ICE EPIQ DOLBY INSIGNIA 3D 2D`;

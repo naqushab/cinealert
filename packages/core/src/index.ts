@@ -16,3 +16,6 @@ export * from "./rank.ts";
 export * from "./district/parse.ts";
 export * from "./district/client.ts";
 export * from "./bot/commands.ts";
+export * from "./catalog.ts";
+export * from "./validate.ts";
+export * from "./bot/wizard.ts";

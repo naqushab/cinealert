@@ -4,13 +4,14 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import {
   buildNotification, diffWatch, dispatch, emptyState, expandDates, findBestSeats, healthUpdate, parseWatchUrl,
-  prettyDate, rankShows, seatSummary, unavailableProvider,
+  prettyDate, rankShows, seatSummary, unavailableProvider, emptyCatalog, learn, validateWatch, validationText,
+  newDraft, render, onCallback, onText, draftToWatch, isSupportedLink,
 } from "../../packages/core/src/index.ts";
-import type { Change, Command, SeatLayoutProvider, ShowWatch, State, Watch } from "../../packages/core/src/index.ts";
+import type { Catalog, Change, Command, Draft, SeatLayoutProvider, ShowWatch, Snapshot, State, Watch, WatchTarget } from "../../packages/core/src/index.ts";
 import { buildNotifiers, loadConfig } from "./config.ts";
 import { pickFetcher } from "./fetchers.ts";
 import { groupKey, makeClients, snapshotFor } from "./sources.ts";
-import { HELP, describeWatch, loadBot, pull, reply, saveBot } from "./bot.ts";
+import { HELP, ack, card, describeWatch, loadBot, pull, reply, saveBot } from "./bot.ts";
 import type { Incoming, Tg } from "./bot.ts";
 
 const args = process.argv.slice(2);
@@ -18,6 +19,7 @@ const dryRun = args.includes("--dry-run");
 const only = args.includes("--only") ? args[args.indexOf("--only") + 1] : process.env.ONLY_WATCH || "";
 const STATE_DIR = process.env.STATE_DIR || "state";
 const STATE_FILE = `${STATE_DIR}/state.json`;
+const CATALOG_FILE = `${STATE_DIR}/catalog.json`;
 const LISTEN = Number(process.env.BOT_LISTEN_SECONDS || 0);
 const log = (s: string) => console.log(s);
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -53,11 +55,25 @@ async function main() {
   const cfg = await loadConfig();
   const state = await loadState();
   const bot = await loadBot(STATE_DIR);
+  let catalog: Catalog = emptyCatalog();
+  try { catalog = { ...emptyCatalog(), ...JSON.parse(await readFile(CATALOG_FILE, "utf8")) }; } catch {}
   const notifiers = buildNotifiers(cfg, dryRun);
   const clients = makeClients(pickFetcher(), log);
   const tgToken = (process.env.TELEGRAM_BOT_TOKEN || "").trim();
   const tg: Tg | null = tgToken && !dryRun ? { token: tgToken, allowed: new Set((process.env.TELEGRAM_CHAT_ID || "").split(",").map((s) => s.trim()).filter(Boolean)) } : null;
   const watches = (): Watch[] => [...cfg.watches, ...bot.watches].map((w) => (bot.paused.includes(w.id) ? { ...w, enabled: false } : w));
+  // Every snapshot also teaches the cinema catalogue (cinemas + formats they screen).
+  const snapshot = async (t: WatchTarget, dates: string[], formats: string[], lang?: string): Promise<Snapshot> => {
+    const snap = await snapshotFor(clients, t, dates, formats, lang);
+    if (snap.shows.length) learn(catalog, snap);
+    return snap;
+  };
+  async function validateFor(w: Watch) {
+    const t = parseWatchUrl(w.url, w.city);
+    let snap: Snapshot | null = null;
+    try { snap = await snapshot(t, expandDates(w.dates || []), w.formats || [], w.language); } catch (e) { log(`  validate: ${(e as Error).message}`); }
+    return validateWatch(w, snap && (snap.complete || snap.shows.length) ? snap : null, catalog);
+  }
   const pick = (w: Watch) => (w.channels?.length ? w.channels.map((n) => notifiers[n]).filter(Boolean) : Object.values(notifiers));
 
   // ---------------- check cycle ----------------
@@ -73,7 +89,7 @@ async function main() {
       const t = parseWatchUrl(ws[0].url, ws[0].city);
       const dates = [...new Set(ws.flatMap((w) => expandDates(w.dates || [])))].sort();
       const formats = ws.some((w) => !w.formats?.length) ? [] : [...new Set(ws.flatMap((w) => w.formats!))];
-      const snap = await snapshotFor(clients, t, dates, formats, ws[0].language);
+      const snap = await snapshot(t, dates, formats, ws[0].language);
       log(`• ${key}: ${snap.movieName || t.movieSlug} · ${snap.shows.length} shows · ${snap.requests} req${snap.complete ? "" : ` · INCOMPLETE: ${snap.failures.join("; ")}`}`);
       if (!snap.complete) {
         fail = true;
@@ -102,6 +118,7 @@ async function main() {
     const all = watches();
     switch (c.cmd) {
       case "help": return { text: HELP };
+      case "wizard": case "cancel": return { text: "" };
       case "error": return { text: `⚠️ ${esc(c.message)}` };
       case "list": {
         if (!all.length) return { text: "Nothing watched yet. Paste a BookMyShow or District link." };
@@ -123,15 +140,12 @@ async function main() {
       case "add": {
         const t = parseWatchUrl(c.watch.url);
         const w = { ...c.watch, id: `b${bot.nextId}`, label: c.watch.label || t.movieSlug.replace(/-/g, " ").replace(/\b\w/g, (x) => x.toUpperCase()) } as Watch;
-        try { groupKey(w); } catch (e) { return { text: `⚠️ ${esc((e as Error).message)}` }; }
-        bot.nextId++;
-        bot.watches.push(w);
-        return { text: `✅ Watching <b>${w.id}</b>: ${esc(w.label!)} [${t.source}]\n${esc(describeWatch(w))}\nChecking now; you'll get alerts on changes.`, added: w };
+        return saveWatch(w);
       }
       case "inspect": case "best": {
         const t = parseWatchUrl(c.url);
         const dates = c.cmd === "best" ? expandDates(c.dates) : [];
-        const snap = await snapshotFor(clients, t, dates, c.cmd === "best" ? c.formats || [] : [], c.cmd === "best" ? c.language : undefined);
+        const snap = await snapshot(t, dates, c.cmd === "best" ? c.formats || [] : [], c.cmd === "best" ? c.language : undefined);
         if (!snap.complete && !snap.shows.length) return { text: `⚠️ Couldn't read ${t.source}: ${esc(snap.failures[0] || "no data")}` };
         if (c.cmd === "inspect") {
           const venues = new Map<string, Set<string>>();
@@ -149,14 +163,71 @@ async function main() {
     }
   }
 
+  async function saveWatch(w: Watch): Promise<{ text: string; added?: Watch }> {
+    try { groupKey(w); } catch (e) { return { text: `⛔ ${esc((e as Error).message)}` }; }
+    const v = await validateFor(w);
+    if (v.errors.length) return { text: `Not saved:\n${validationText(v, esc)}` };
+    w.id = `b${bot.nextId++}`;
+    bot.watches.push(w);
+    return { text: `✅ Watching <b>${w.id}</b>: ${esc(w.label || "")} [${parseWatchUrl(w.url).source}]\n${esc(describeWatch(w))}\n\n${validationText(v, esc)}`, added: w };
+  }
+
+  // ---------------- guided add ----------------
+  async function startWizard(chat: string, url: string): Promise<void> {
+    const t = parseWatchUrl(url);
+    const snap = await snapshot(t, [], [], undefined);
+    if (!snap.shows.length && !snap.complete) { await reply(tg!, chat, `⚠️ Couldn't read ${t.source} right now (${esc(snap.failures[0] || "no data")}). You can still add it in one line: /add ${esc(url)} dates=... formats=...`); return; }
+    const d = newDraft(`k${Date.now().toString(36).slice(-5)}`, chat, url, snap);
+    if (t.language && t.source === "bms") d.movie += ` (${t.language})`;
+    const r = render(d);
+    d.msgId = await card(tg!, chat, r.text, r.keyboard);
+    bot.drafts[chat] = d;
+  }
+
+  async function showDraft(d: Draft, note = ""): Promise<void> {
+    let notes = "";
+    if (d.step === "review") {
+      const w = { ...draftToWatch(d), id: "_" } as Watch;
+      notes = validationText(await validateFor(w), esc);
+    }
+    const r = render(d, notes);
+    d.msgId = await card(tg!, d.chat, (note ? `<i>${esc(note)}</i>\n` : "") + r.text, r.keyboard, d.msgId);
+  }
+
+  async function onTap(inc: Incoming): Promise<Watch | null> {
+    const [id, op, arg] = inc.callback!.data.split("|");
+    const d = bot.drafts[inc.chat];
+    if (!d || d.id !== id) { await ack(tg!, inc.callback!.id, "This setup has expired. Paste the link again."); return null; }
+    await ack(tg!, inc.callback!.id);
+    const res = onCallback(d, op, arg);
+    if (res === "cancel") { delete bot.drafts[inc.chat]; await card(tg!, d.chat, `✖ Cancelled: ${esc(d.movie)}`, [], d.msgId); return null; }
+    if (res === "save") {
+      const r = await saveWatch({ ...draftToWatch(d), id: "_" } as Watch);
+      if (!r.added) { await showDraft(d, "Fix the errors below, then Save."); return null; }
+      delete bot.drafts[inc.chat];
+      await card(tg!, d.chat, r.text, [], d.msgId);
+      return r.added;
+    }
+    await showDraft(d);
+    return null;
+  }
+
   async function processCommands(waitSeconds: number): Promise<Watch[]> {
     if (!tg) return [];
     const added: Watch[] = [];
     let incoming: Incoming[] = [];
     try { incoming = await pull(tg, bot, waitSeconds, log); } catch (e) { log(`  telegram getUpdates failed: ${(e as Error).message}`); return []; }
+    for (const d of Object.values(bot.drafts)) if (Date.now() - Date.parse(d.createdAt) > 2 * 86400e3) delete bot.drafts[d.chat];
     for (const inc of incoming) {
-      log(`  ⌨ ${inc.text.slice(0, 80)}`);
-      try { const r = await handle(inc); if (r.added) added.push(r.added); await reply(tg, inc.chat, r.text); }
+      log(`  ⌨ ${inc.callback ? `[tap ${inc.callback.data}]` : inc.text.slice(0, 80)}`);
+      try {
+        if (inc.callback) { const w = await onTap(inc); if (w) added.push(w); continue; }
+        const draft = bot.drafts[inc.chat];
+        if (draft && !inc.text.startsWith("/") && !isSupportedLink(inc.text)) { const note = onText(draft, inc.text); await showDraft(draft, note); continue; }
+        if (inc.command.cmd === "cancel") { if (draft) { delete bot.drafts[inc.chat]; await card(tg, inc.chat, "✖ Cancelled", [], draft.msgId); } else await reply(tg, inc.chat, "Nothing to cancel."); continue; }
+        if (inc.command.cmd === "wizard") { await startWizard(inc.chat, inc.command.url); continue; }
+        const r = await handle(inc); if (r.added) added.push(r.added); await reply(tg, inc.chat, r.text);
+      }
       catch (e) { log(`  command failed: ${(e as Error).message}`); await reply(tg, inc.chat, `⚠️ ${esc((e as Error).message)}`).catch(() => {}); }
     }
     return added;
@@ -192,6 +263,7 @@ async function main() {
     await mkdir(STATE_DIR, { recursive: true });
     await writeFile(STATE_FILE, JSON.stringify(state, null, 2) + "\n");
     await saveBot(STATE_DIR, bot);
+    await writeFile(CATALOG_FILE, JSON.stringify(catalog) + "\n");
   }
   log(`done: ${clients.requests()} request(s)`);
 }

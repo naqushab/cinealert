@@ -31,7 +31,7 @@ test("commands", () => {
   assert.equal(a.watch.minSeats, 2); assert.equal(a.watch.maxPrice, 1500); assert.equal(a.watch.language, "english");
   const s = parseCommand(`/show ${BMS} cinema=PVLE time=19:30 seats=2 class=recliner`, today);
   assert.ok(s.cmd === "add" && s.watch.type === "show" && s.watch.cinema === "PVLE" && s.watch.seats?.count === 2);
-  assert.equal(parseCommand(BMS, today).cmd, "add", "bare link = /add");
+  assert.equal(parseCommand(BMS, today).cmd, "wizard", "bare link = guided add");
   assert.equal(parseCommand(`/show ${BMS}`, today).cmd, "error");
   assert.deepEqual(parseCommand("/pause b2"), { cmd: "pause", id: "b2" });
   const b = parseCommand(`/best ${DIST} date=18-12 seats=2 time=19:30`, today);

@@ -7,20 +7,48 @@ alerts you on **Telegram**, **phone push (ntfy)** and/or **email**. Runs free on
 - No build step: TypeScript run directly by Node ≥ 23.6. No npm dependencies.
 - `packages/core` is pure TS with no Node APIs, so the planned Android app (Expo / React Native) reuses it unchanged.
 
-## Telegram commands
+## Telegram: guided add (no commands to remember)
 
-Talk to your bot (only chats listed in `TELEGRAM_CHAT_ID` are obeyed):
+**Paste a BookMyShow or District link** (or `/add <link>`). The bot reads what's listed right now and walks you through it with buttons:
+
+`Language (District) → Dates → Formats → Cinemas → Show time (if one cinema) → Time of day → Seat class → Seats → Review → Save`
+
+- Only real options are shown: open dates, the formats this movie is listed in (with show counts), cinemas that screen your chosen formats, seat classes that exist.
+- **Type** to go beyond what's listed: dates not open yet (`24-12..25-12`), a format not listed yet (`IMAX`), or a cinema search (`logix`). A name that matches nothing is kept as a name to watch for.
+- **Review** runs validation before saving. ⛔ errors block saving: all dates in the past, unknown city, bad link.
+  ⚠️ warnings save anyway, because things can appear later:
+
+| Check | Example warning |
+|---|---|
+| Format offered by the movie? | "This movie isn't listed in IMAX right now (formats now: PXL, INFINITY_VISION, 4DX...). It may be added later." |
+| Cinema exists? | "No cinema matching "xyzzy" is showing this movie, and none by that name has been seen in national-capital-region-ncr (44 cinemas known). Check the spelling..." |
+| Cinema exists but not showing it | ""logix" (PVR: Superplex Logix, Noida) isn't showing this movie right now. It may be added later." |
+| Cinema shows that format? | "PVR: Select City Walk isn't showing it in PXL now; formats seen there so far: INFINITY_VISION, 3D." |
+| Language available? (District) | "Language "tamil" isn't listed yet (now: English, Hindi)." |
+| Dates open? | "Not open yet: Thu, 24 Dec, Fri, 25 Dec." |
+| Show time exists? | "No show near 15:00 at that cinema now. Times listed: 10:15 AM, 7:30 PM..." |
+| Seat class / price | "No seat class like "sofa"..." · "Nothing at or below ₹500; cheapest is ₹780." |
+| Sold out now | "All 6 matching show(s) are sold out in your seat class right now. You'll be alerted if seats come back..." |
+
+The **cinema catalogue** (`catalog.json` on the state branch) learns every cinema and the formats it screens from every check,
+so "does this hall exist / does it ever show PXL" gets more accurate over time, even for cinemas not showing your movie yet.
+
+Taps are handled while the workflow listens (see `BOT_LISTEN_SECONDS` below). An unfinished setup expires after 2 days; `/cancel` stops it.
+
+## Telegram commands (one-liners)
+
+Only chats listed in `TELEGRAM_CHAT_ID` are obeyed. One-line `/add ...` is validated the same way:
 
 | Command | Does |
 |---|---|
-| *(paste a BMS or District link)* | Watch it (same as `/add`) |
+| *(paste a BMS or District link)* / `/add <link>` | Guided setup with buttons |
 | `/add <link> dates=17-12..25-12 formats=pxl,4dx cinemas="logix,mall of india" times=evening,night class=recliner seats=2 max=1500 lang=english` | Watch a movie (any or listed cinemas) |
 | `/show <link> cinema=PVLE time=19:30 seats=2 class=recliner dates=18-12` | Watch one cinema / one show time |
 | `/best <link> date=18-12 seats=2 class=recliner time=19:30 lang=english` | Rank the best shows to book **right now** |
 | `/inspect <link>` | Formats, open dates, cinema codes |
 | `/list` · `/pause <id>` · `/resume <id>` · `/remove <id>` | Manage watches (bot watches are `b1`, `b2`...; file watches can be paused) |
 
-**Reply speed.** Nothing is hosted, so commands are read when the workflow runs: on the next hourly run by default.
+**Reply speed (important for the guided add).** Nothing is hosted, so commands are read when the workflow runs: on the next hourly run by default.
 Set the repo **variable** `BOT_LISTEN_SECONDS` (Settings → Secrets and variables → Actions → Variables) to keep
 listening after each check, e.g. `1500` = live replies for ~25 min of every hour. Do this on a public repo
 (free minutes); on a private repo it uses ~25 Actions minutes per run. Run the workflow by hand for an instant pass.

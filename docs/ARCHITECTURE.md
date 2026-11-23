@@ -29,6 +29,12 @@ with `label, price, sAvail, sTotal, statusColor`. Status: 0 if `sAvail=0`, else 
 District has refused GitHub runners before (veerabahu, kyloprat repos). If it does, the health alert fires; there is no proxy fallback by design.
 Seat-layout pages (`/movies/seat-layout/<fmt>?encsessionid=...`) show "technical error" when opened directly (they need the booking flow), so alerts link to the date page instead.
 
+## Validation & guided add
+- `validateWatch(watch, snapshot, catalog)` (pure): ⛔ errors (past dates, bad link/city) vs ⚠️ warnings (format / language / date / cinema / cinema×format / show time / class / price / sold out "not now, maybe later").
+- `catalog` (`learn()` on every snapshot): cinemas per source+city with the format keys each has screened.
+- `bot/wizard.ts` (pure state machine): `newDraft(snapshot)` → `render()` → `onCallback()` / `onText()` → `draftToWatch()`. Telegram callback data is `<draftId>|<op>|<index>` (≤64 bytes); option lists live in the draft (`bot.json`). The Android app can drive the same machine.
+- Tested end to end with a scripted fake Telegram against live BMS (23 Nov 2026).
+
 ## Best seat / best show
 - **`rankShows`** (live today, both sources): ranks (show × seat class) by availability (exact ratio on District, status on BMS),
   preferred class, and closeness to a preferred time. Powers `/best` and the ranked booking buttons in every alert.
