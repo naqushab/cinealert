@@ -409,6 +409,61 @@
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "PGND|44738|20261217|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44738|20261217|PRIME": {
+          "status": 0,
+          "price": 790,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44738|20261217|CLASSIC": {
+          "status": 2,
+          "price": 770
+        },
+        "PGND|44739|20261217|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44739|20261217|PRIME": {
+          "status": 0,
+          "price": 790,
+          "soldOutSince": "2026-11-24T09:56:27.705Z"
+        },
+        "PGND|44739|20261217|CLASSIC": {
+          "status": 2,
+          "price": 770
+        },
+        "PGND|44740|20261217|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44740|20261217|PRIME": {
+          "status": 0,
+          "price": 790,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44740|20261217|CLASSIC": {
+          "status": 2,
+          "price": 770
+        },
+        "PGND|44741|20261217|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44741|20261217|PRIME": {
+          "status": 1,
+          "price": 790
+        },
+        "PGND|44741|20261217|CLASSIC": {
+          "status": 3,
+          "price": 720
+        },
         "USEB|76243|20261217|LUX": {
           "status": 3,
           "price": 550
@@ -752,6 +807,58 @@
           "status": 3,
           "price": 1000
         },
+        "PGND|44743|20261218|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44743|20261218|PRIME": {
+          "status": 1,
+          "price": 790
+        },
+        "PGND|44743|20261218|CLASSIC": {
+          "status": 3,
+          "price": 720
+        },
+        "PGND|44744|20261218|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44744|20261218|PRIME": {
+          "status": 1,
+          "price": 790
+        },
+        "PGND|44744|20261218|CLASSIC": {
+          "status": 3,
+          "price": 670
+        },
+        "PGND|44745|20261218|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44745|20261218|PRIME": {
+          "status": 1,
+          "price": 790
+        },
+        "PGND|44745|20261218|CLASSIC": {
+          "status": 3,
+          "price": 670
+        },
+        "PGND|44746|20261218|RECLINER": {
+          "status": 0,
+          "price": 1120,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "PGND|44746|20261218|PRIME": {
+          "status": 1,
+          "price": 790
+        },
+        "PGND|44746|20261218|CLASSIC": {
+          "status": 3,
+          "price": 670
+        },
         "USEB|76248|20261218|LUX": {
           "status": 3,
           "price": 550
@@ -878,6 +985,10 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37486|20261219|CLASSIC": {
+          "status": 3,
+          "price": 1000
+        },
         "DTYN|37486|20261219|PRIME": {
           "status": 0,
           "price": 1000,
@@ -887,10 +998,6 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "DTYN|37486|20261219|CLASSIC": {
-          "status": 3,
-          "price": 1000
         },
         "DTYN|37652|20261219|RECLINER": {
           "status": 0,
@@ -1058,7 +1165,7 @@
           "price": 690
         },
         "DTYN|37669|20261219|XTRA LEGROOM": {
-          "status": 1,
+          "status": 2,
           "price": 960
         },
         "DTYN|37669|20261219|PRIME": {
@@ -1627,126 +1734,6 @@
         "WATG|5377|20261220|GOLD RECLINER": {
           "status": 3,
           "price": 800
-        },
-        "PGND|44738|20261217|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44738|20261217|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44738|20261217|CLASSIC": {
-          "status": 0,
-          "price": 770,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44739|20261217|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44739|20261217|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44739|20261217|CLASSIC": {
-          "status": 0,
-          "price": 770,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44740|20261217|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44740|20261217|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44740|20261217|CLASSIC": {
-          "status": 0,
-          "price": 770,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44741|20261217|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44741|20261217|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44741|20261217|CLASSIC": {
-          "status": 0,
-          "price": 720,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44743|20261218|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44743|20261218|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44743|20261218|CLASSIC": {
-          "status": 0,
-          "price": 720,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44744|20261218|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44744|20261218|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44744|20261218|CLASSIC": {
-          "status": 0,
-          "price": 670,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44745|20261218|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44745|20261218|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44745|20261218|CLASSIC": {
-          "status": 0,
-          "price": 670,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44746|20261218|RECLINER": {
-          "status": 0,
-          "price": 1120,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "PGND|44746|20261218|PRIME": {
-          "status": 0,
-          "price": 790,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
-        },
-        "PGND|44746|20261218|CLASSIC": {
-          "status": 0,
-          "price": 670,
-          "soldOutSince": "2026-11-24T09:56:27.705Z"
         },
         "PVVW|67332|20261217|PRIME ROWS": {
           "status": 0,
@@ -17344,7 +17331,7 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-24T10:17:14.056Z",
+      "lastCheckedAt": "2026-11-24T10:43:43.073Z",
       "lastResult": "141 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -18150,7 +18137,7 @@
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-24T10:17:14.056Z",
+      "lastCheckedAt": "2026-11-24T10:43:43.073Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
@@ -18163,7 +18150,7 @@
       "dates": [],
       "cats": {},
       "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-24T10:17:14.100Z"
+      "lastCheckedAt": "2026-11-24T10:43:43.101Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18466,14 +18453,14 @@
           "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-24T10:17:14.056Z",
+      "lastCheckedAt": "2026-11-24T10:43:43.073Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 18
+    "okStreak": 19
   },
   "meta": {},
   "seats": {}
