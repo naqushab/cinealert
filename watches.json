@@ -1,5 +1,8 @@
 {
   "dailySummaryHourIST": 20,
+  "onlyCinemas": [
+    "noida"
+  ],
   "channels": {
     "telegram": {
       "type": "telegram",
@@ -21,7 +24,7 @@
     {
       "id": "doomsday-ncr-imax",
       "type": "movie",
-      "label": "Avengers: Doomsday (English) · NCR",
+      "label": "Avengers: Doomsday (English) · Noida",
       "url": "https://in.bookmyshow.com/movies/national-capital-region-ncr/avengers-doomsday/buytickets/ET00526306/20261217?etCodes=ET00526306&language=english&refEventCode=ET00526306",
       "dates": [
         "2026-12-17..2026-12-25"
@@ -36,7 +39,7 @@
     {
       "id": "doomsday-ncr-district",
       "type": "movie",
-      "label": "Avengers: Doomsday (English) · NCR",
+      "label": "Avengers: Doomsday (English) · Noida · District",
       "url": "https://www.district.in/movies/avengers-doomsday-movie-tickets-in-delhi-ncr-MV176735",
       "language": "english",
       "dates": [

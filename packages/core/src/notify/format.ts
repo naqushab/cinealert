@@ -4,7 +4,8 @@ import { rankShows } from "../rank.ts";
 const DOT = ["🔴", "🟡", "🟠", "🟢"];
 const WORD = ["Sold out", "Almost full", "Filling fast", "Available"];
 const KIND: Record<Change["kind"], string> = { DATE_OPENED: "📅", NEW_SHOW: "🆕", BACK_IN_STOCK: "🔁 back", STATUS_UP: "⬆️", SEATS_FOUND: "💺" };
-const MAX_SHOWS = 12;
+const TG_MAX = 60;      // Telegram: everything (split into several messages if needed)
+const PUSH_MAX = 6;     // ntfy / email body: top entries, plus a "View all" link
 
 export const prettyDate = (dc: string) => {
   const d = new Date(`${dc.slice(0, 4)}-${dc.slice(4, 6)}-${dc.slice(6, 8)}T00:00:00Z`);
@@ -31,7 +32,8 @@ export function buildNotification(w: Watch, movieName: string, changes: Change[]
     byShow.set(k, [...(byShow.get(k) || []), c]);
   }
   const groups = [...byShow.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, g]) => g);
-  const shown = groups.slice(0, MAX_SHOWS);
+  const shown = groups.slice(0, TG_MAX);
+  const top = groups.slice(0, PUSH_MAX);
 
   // ---------- Telegram ----------
   const tg: string[] = [`🎟️ <b>${esc(name)}</b>${sourceLabel ? ` · ${esc(sourceLabel)}` : ""}`];
@@ -45,18 +47,30 @@ export function buildNotification(w: Watch, movieName: string, changes: Change[]
     for (const c of g) tg.push(`      ${DOT[c.category!.status] || "⚪"} ${esc(c.category!.name)} ₹${c.category!.price}${esc(seats(c))} ${KIND[c.kind]}${c.detail ? `\n      💺 ${esc(c.detail)}` : ""}`);
     tg.push(`      <a href="${esc(g[0].link)}">Book this show →</a>`);
   }
-  if (groups.length > MAX_SHOWS) tg.push("", `<i>...and ${groups.length - MAX_SHOWS} more show(s). Tap "Best now" for the top picks.</i>`);
+  if (groups.length > TG_MAX) tg.push("", `<i>...and ${groups.length - TG_MAX} more: tap "📋 All ${groups.length} shows".</i>`);
 
   // ---------- plain text (ntfy) & email HTML ----------
   const text: string[] = [], html: string[] = [];
   for (const c of opened) { text.push(`📅 ${prettyDate(c.dateCode!)} is open → ${c.link}`); html.push(`<p><b>📅 ${prettyDate(c.dateCode!)}</b> is open: <a href="${esc(c.link)}">all shows</a></p>`); }
-  for (const g of shown) {
+  for (const g of top) {
     const s = g[0].show!;
     const cats = g.map((c) => `${DOT[c.category!.status] || ""} ${c.category!.name} ₹${c.category!.price} ${WORD[c.category!.status] || ""}${seats(c)}`);
     text.push(`${prettyDate(s.dateCode)} ${time12(s)} · ${s.venueName}${fmtLine(s) ? ` · ${fmtLine(s)}` : ""}\n  ${cats.join("\n  ")}`);
     html.push(`<p><b>${prettyDate(s.dateCode)} ${esc(time12(s))}</b> · ${esc(s.venueName)}${fmtLine(s) ? ` · <i>${esc(fmtLine(s))}</i>` : ""}<br>${cats.map(esc).join("<br>")}<br><a href="${esc(g[0].link)}">Book this show</a></p>`);
   }
-  if (groups.length > MAX_SHOWS) { text.push(`...and ${groups.length - MAX_SHOWS} more`); html.push(`<p>...and ${groups.length - MAX_SHOWS} more shows</p>`); }
+  const trimmed = groups.length > PUSH_MAX;
+  if (trimmed) { text.push(`+${groups.length - PUSH_MAX} more: tap "All ${groups.length} shows"`); html.push(`<p>+${groups.length - PUSH_MAX} more shows (see "All ${groups.length} shows" below)</p>`); }
+
+  // ---------- full list (Markdown page) ----------
+  const md: string[] = [`# ${name}${sourceLabel ? ` · ${sourceLabel}` : ""}`, "", `_${changes.filter((c) => c.show).length} change(s) in ${groups.length} show(s)_`, ""];
+  if (opened.length) md.push(`**Bookings open:** ${opened.map((c) => `[${prettyDate(c.dateCode!)}](${c.link})`).join(" · ")}`, "");
+  let mdDate = "";
+  for (const g of groups) {
+    const s = g[0].show!;
+    if (s.dateCode !== mdDate) { md.push(`## ${prettyDate(s.dateCode)}`, "", "| Time | Cinema | Format | Seats | Book |", "|---|---|---|---|---|"); mdDate = s.dateCode; }
+    const cats = g.map((c) => `${DOT[c.category!.status] || ""} ${c.category!.name} ₹${c.category!.price}${seats(c)}`).join("<br>");
+    md.push(`| **${time12(s)}** | ${s.venueName.replace(/\|/g, "/")} | ${fmtLine(s).replace(/\|/g, "/")} | ${cats} | [Book](${g[0].link}) |`);
+  }
 
   // ---------- buttons ----------
   const uniq = groups.map((g) => g[0]);
@@ -72,7 +86,7 @@ export function buildNotification(w: Watch, movieName: string, changes: Change[]
     { text: "⏸ Pause", data: `a|pause|${w.id}` },
   ];
   return {
-    title, text: text.join("\n"), html: html.join(""), tg: tg.join("\n"),
+    title, text: text.join("\n"), html: html.join(""), tg: tg.join("\n"), full: md.join("\n") + "\n", total: groups.length, trimmed,
     link: opened[0]?.link || changes[0]?.link || w.url,
     priority: opened.length ? "urgent" : "high", buttons, actions,
   };

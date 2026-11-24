@@ -119,6 +119,10 @@ export interface Notification {
   buttons?: Button[];          // URL buttons (booking)
   tg?: string;                 // Telegram-flavoured HTML (only <b><i><a><code>, \n line breaks)
   actions?: ActionButton[];    // callback buttons (pause, snooze, best now...)
+  full?: string;               // complete list as Markdown (published as a "View all" page when the push is trimmed)
+  total?: number;              // shows in the full list
+  trimmed?: boolean;           // text/html (push, email) show only the top entries
+  allUrl?: string;             // set by the runner once the full page is published
 }
 
 export interface Notifier { name: string; send(n: Notification): Promise<void> }

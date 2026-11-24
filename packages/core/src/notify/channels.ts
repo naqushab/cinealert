@@ -20,6 +20,7 @@ export function telegram(token: string, chatIds: string[], f: Fetch = fetch): No
       if (cur.trim()) chunks.push(cur);
       const keyboard = [
         ...(n.buttons?.length ? n.buttons : [{ text: "🎟️ Book now", url: n.link }]).slice(0, 5).map((b) => [{ text: b.text, url: b.url }]),
+        ...(n.allUrl && (n.total || 0) > 60 ? [[{ text: `📋 All ${n.total} shows`, url: n.allUrl }]] : []),
         ...(n.actions?.length ? [n.actions.slice(0, 4).map((a) => ({ text: a.text, callback_data: a.data }))] : []),
       ];
       for (const chat_id of chatIds) {
@@ -51,7 +52,7 @@ export function ntfy(topic: string, server = "https://ntfy.sh", f: Fetch = fetch
       const r = await f(server.replace(/\/$/, "") + "/", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ topic, title: n.title, message: n.text.slice(0, 3900), click: n.buttons?.[0]?.url || n.link, actions: (n.buttons || []).slice(0, 3).map((b) => ({ action: "view", label: b.text.slice(0, 40), url: b.url })), priority: n.priority === "urgent" ? 5 : n.priority === "high" ? 4 : 3, tags: ["ticket"] }),
+        body: JSON.stringify({ topic, title: n.title, message: n.text.slice(0, 3900), click: n.buttons?.[0]?.url || n.link, actions: [...(n.buttons || []).slice(0, n.allUrl ? 2 : 3), ...(n.allUrl ? [{ text: `📋 All ${n.total} shows`, url: n.allUrl }] : [])].map((b) => ({ action: "view", label: b.text.slice(0, 40), url: b.url })), priority: n.priority === "urgent" ? 5 : n.priority === "high" ? 4 : 3, tags: ["ticket"] }),
       });
       if (!r.ok) throw new Error(`ntfy: HTTP ${r.status}`);
     },
@@ -63,7 +64,7 @@ export function resendEmail(apiKey: string, from: string, to: string[], f: Fetch
   return {
     name: "email",
     async send(n: Notification) {
-      const html = `<div style="font-family:sans-serif"><h2>${n.title.replace(/</g, "&lt;")}</h2>${n.html}<p>${(n.buttons?.length ? n.buttons : [{ text: "Book now", url: n.link }]).map((b) => `<a href="${b.url}" style="display:inline-block;margin:4px;background:#f84464;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">${b.text}</a>`).join("")}</p></div>`;
+      const html = `<div style="font-family:sans-serif"><h2>${n.title.replace(/</g, "&lt;")}</h2>${n.html}<p>${(n.buttons?.length ? n.buttons : [{ text: "Book now", url: n.link }]).map((b) => `<a href="${b.url}" style="display:inline-block;margin:4px;background:#f84464;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">${b.text}</a>`).join("")}</p>${n.allUrl ? `<p><a href="${n.allUrl}">📋 View all ${n.total} shows</a></p>` : ""}</div>`;
       const r = await f("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },

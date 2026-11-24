@@ -21,9 +21,18 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
+
+      # Self-chaining: queue the next run FIRST, so the chain survives even if this run fails or
+      # times out. The concurrency group holds it until this run ends (one running, one waiting).
+      # Stop it: set repo variable CHAIN=off. The hourly cron above restarts it if it ever breaks.
+      - name: Queue next run
+        if: ${{ vars.CHAIN != 'off' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run watch.yml --ref "$GITHUB_REF_NAME" -R "$GITHUB_REPOSITORY" || echo "::warning::could not queue next run"
 
       - uses: actions/setup-node@v4
         with:
@@ -77,11 +86,3 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -q -m "state $(date -u +%FT%TZ)"
           git push -q origin state
-
-      # Self-chaining: queue the next run so watching is continuous even when GitHub skips
-      # scheduled runs. Stop it: set repo variable CHAIN=off, or cancel a run.
-      - name: Start next run
-        if: ${{ !cancelled() && vars.CHAIN != 'off' }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run watch.yml --ref "$GITHUB_REF_NAME" -R "$GITHUB_REPOSITORY"

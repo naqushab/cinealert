@@ -1,11 +1,12 @@
 // CineAlert runner. One run = (Telegram commands) → check every watch → (optionally keep listening).
 //   node apps/runner/main.ts [--dry-run] [--only <watchId>]
 // Env: FETCHER=cffi, STATE_DIR, BOT_LISTEN_SECONDS, TELEGRAM_*, NTFY_TOPIC, RESEND_API_KEY, EMAIL_*.
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import {
   buildNotification, diffWatch, dispatch, emptyState, expandDates, findBestSeats, healthUpdate, parseWatchUrl,
   prettyDate, rankShows, seatSummary, unavailableProvider, emptyCatalog, learn, validateWatch, validationText,
-  newDraft, render, onCallback, onText, draftToWatch, isSupportedLink, parseCommand, showMatches, seatLayoutUrl,
+  newDraft, render, onCallback, onText, draftToWatch, isSupportedLink, parseCommand, showMatches, seatLayoutUrl, cinemaMatches,
 } from "../../packages/core/src/index.ts";
 import type { Catalog, Change, Command, Draft, SeatLayoutProvider, ShowWatch, Snapshot, State, Watch, WatchTarget } from "../../packages/core/src/index.ts";
 import { buildNotifiers, loadConfig } from "./config.ts";
@@ -67,7 +68,28 @@ async function main() {
   const seatAsWatch = (cfg.seatWatches || []).map((sw) => ({ id: sw.id, type: "movie", label: `💺 ${sw.label || sw.id}`, url: sw.bms, dates: sw.dates, formats: sw.formats,
     cinemas: sw.cinemas.map((c) => c.name || c.bms), enabled: sw.enabled }) as Watch);
   const seatIds = new Set(seatAsWatch.map((w) => w.id));
-  const watches = (): Watch[] => [...cfg.watches, ...seatAsWatch, ...bot.watches].map((w) => (bot.paused.includes(w.id) ? { ...w, enabled: false } : w));
+  // Area filter (config "onlyCinemas", e.g. ["noida"]): applies to every movie watch that doesn't list its own cinemas.
+  const area = (cfg.onlyCinemas || []).filter(Boolean);
+  const inArea = (s: { venueCode: string; venueName: string }) => !area.length || area.some((a) => cinemaMatches(s as any, a));
+  const scoped = (w: Watch): Watch => (area.length && w.type === "movie" && !w.cinemas?.length ? { ...w, cinemas: area } : w);
+  const watches = (): Watch[] => [...cfg.watches, ...seatAsWatch, ...bot.watches].map((w) => scoped(bot.paused.includes(w.id) ? { ...w, enabled: false } : w));
+
+  // "View all" page: full alert as Markdown on the public state branch (rendered by GitHub).
+  async function publishFull(id: string, md: string): Promise<string | undefined> {
+    const repo = process.env.GITHUB_REPOSITORY;
+    if (dryRun || !repo || !process.env.CI) return undefined;
+    try {
+      const dir = `${STATE_DIR}/reports`;
+      await mkdir(dir, { recursive: true });
+      const file = `${id}-${new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19)}.md`;
+      await writeFile(`${dir}/${file}`, md);
+      const mine = (await readdir(dir)).filter((f) => f.startsWith(`${id}-`)).sort();
+      for (const old of mine.slice(0, -15)) await unlink(`${dir}/${old}`);   // keep the last 15 per watch
+      const g = (...a: string[]) => execFileSync("git", ["-C", STATE_DIR, "-c", "user.name=cinealert-bot", "-c", "user.email=cinealert-bot@users.noreply.github.com", ...a], { stdio: "pipe" });
+      g("add", "-A", "reports"); g("commit", "-q", "-m", `report ${id}`); g("push", "-q", "origin", "HEAD:state");
+      return `https://github.com/${repo}/blob/state/reports/${file}`;
+    } catch (e) { log(`  report publish failed: ${(e as Error).message.split("\n")[0]}`); return undefined; }
+  }
   // Every snapshot also teaches the cinema catalogue (cinemas + formats they screen).
   const snapshot = async (t: WatchTarget, dates: string[], formats: string[], lang?: string): Promise<Snapshot> => {
     const snap = await snapshotFor(clients, t, dates, formats, lang);
@@ -111,6 +133,7 @@ async function main() {
         if (!changes.length) { state.watches[w.id] = next; log(`  ${w.id}: ${next.lastResult}`); continue; }
         if (bot.muted[w.id] && Date.parse(bot.muted[w.id]) > Date.now()) { state.watches[w.id] = { ...next, lastResult: next.lastResult + " (snoozed)" }; log(`  ${w.id}: ${changes.length} change(s) skipped (snoozed)`); continue; }
         const n = buildNotification(w, snap.movieName, changes, t.source === "district" ? "District" : "BMS");
+        if (n.trimmed) n.allUrl = await publishFull(w.id, n.full!);
         const sent = await dispatch(n, pick(w), log);
         state.watches[w.id] = sent ? next : { ...(state.watches[w.id] || { dates: [], cats: {} }), lastCheckedAt: now.toISOString(), lastResult: "alert delivery failed, will retry" };
         log(`  ${w.id}: ${changes.length} change(s) → ${sent ? "sent" : "NOT sent"}`);
@@ -199,7 +222,7 @@ async function main() {
         const snap = await snapshot(t, dates, c.cmd === "best" ? c.formats || [] : [], c.cmd === "best" ? c.language : undefined);
         if (!snap.complete && !snap.shows.length) return { text: `⚠️ Couldn't read ${t.source}: ${esc(snap.failures[0] || "no data")}` };
         if (c.cmd === "best") {
-          const pool = snap.shows.filter((s) => !dates.length || dates.includes(s.dateCode));
+          const pool = snap.shows.filter((s) => (!dates.length || dates.includes(s.dateCode)) && inArea(s));
           const r = bestReply(snap, t, pool, { seats: c.seats, categories: c.categories, formats: c.formats, times: c.times, preferTime: c.time, maxPrice: c.maxPrice });
           r.kb = [...(r.kb || []).filter((row) => row[0]?.url), [{ text: "➕ Watch this movie", data: "a|wiz" }]];
           return r;
@@ -276,7 +299,8 @@ async function main() {
   // ---------------- guided add ----------------
   async function startWizard(chat: string, url: string): Promise<void> {
     const t = parseWatchUrl(url);
-    const snap = await snapshot(t, [], [], undefined);
+    const full = await snapshot(t, [], [], undefined);
+    const snap = { ...full, shows: full.shows.filter(inArea) };   // guided add only offers in-area cinemas
     if (!snap.shows.length && !snap.complete) { await reply(tg!, chat, `⚠️ Couldn't read ${t.source} right now (${esc(snap.failures[0] || "no data")}). You can still add it in one line: /add ${esc(url)} dates=... formats=...`); return; }
     const d = newDraft(`k${Date.now().toString(36).slice(-5)}`, chat, url, snap);
     if (t.language && t.source === "bms") d.movie += ` (${t.language})`;
