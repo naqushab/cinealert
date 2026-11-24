@@ -294,11 +294,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37478|20261217|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
         "DTYN|37478|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -307,6 +302,11 @@
         "DTYN|37478|20261217|CLASSIC": {
           "status": 2,
           "price": 1000
+        },
+        "DTYN|37478|20261217|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37635|20261217|RECLINER": {
           "status": 0,
@@ -346,16 +346,16 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37479|20261217|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37479|20261217|CLASSIC": {
           "status": 2,
           "price": 1000
         },
         "DTYN|37479|20261217|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "DTYN|37479|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -396,6 +396,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37480|20261217|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37480|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -404,11 +409,6 @@
         "DTYN|37480|20261217|CLASSIC": {
           "status": 2,
           "price": 1000
-        },
-        "DTYN|37480|20261217|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "PGND|44738|20261217|RECLINER": {
           "status": 0,
@@ -583,7 +583,7 @@
           "price": 800
         },
         "DTYN|37660|20261218|XTRA LEGROOM": {
-          "status": 2,
+          "status": 1,
           "price": 810
         },
         "DTYN|37660|20261218|PRIME": {
@@ -655,7 +655,7 @@
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37482|20261218|CLASSIC": {
-          "status": 2,
+          "status": 3,
           "price": 1000
         },
         "DTYN|37482|20261218|PRIME": {
@@ -697,11 +697,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37483|20261218|XTRA LEGROOM": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T16:09:00.924Z"
-        },
         "DTYN|37483|20261218|CLASSIC": {
           "status": 2,
           "price": 1000
@@ -710,6 +705,11 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "DTYN|37483|20261218|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T16:09:00.924Z"
         },
         "DTYN|37650|20261218|RECLINER": {
           "status": 1,
@@ -745,6 +745,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37484|20261218|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37484|20261218|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -753,11 +758,6 @@
         "DTYN|37484|20261218|CLASSIC": {
           "status": 2,
           "price": 1000
-        },
-        "DTYN|37484|20261218|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37651|20261218|RECLINER": {
           "status": 0,
@@ -795,16 +795,16 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37485|20261218|PRIME": {
-          "status": 1,
-          "price": 1000
-        },
         "DTYN|37485|20261218|XTRA LEGROOM": {
           "status": 1,
           "price": 1000
         },
         "DTYN|37485|20261218|CLASSIC": {
           "status": 3,
+          "price": 1000
+        },
+        "DTYN|37485|20261218|PRIME": {
+          "status": 1,
           "price": 1000
         },
         "PGND|44743|20261218|RECLINER": {
@@ -1034,10 +1034,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-24T02:57:04.097Z"
         },
-        "DTYN|37487|20261219|CLASSIC": {
-          "status": 2,
-          "price": 1000
-        },
         "DTYN|37487|20261219|PRIME": {
           "status": 0,
           "price": 1000,
@@ -1047,6 +1043,10 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "DTYN|37487|20261219|CLASSIC": {
+          "status": 2,
+          "price": 1000
         },
         "DTYN|37653|20261219|RECLINER": {
           "status": 1,
@@ -1421,6 +1421,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37492|20261220|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37492|20261220|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -1429,11 +1434,6 @@
         "DTYN|37492|20261220|CLASSIC": {
           "status": 2,
           "price": 1000
-        },
-        "DTYN|37492|20261220|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37657|20261220|RECLINER": {
           "status": 1,
@@ -1469,6 +1469,10 @@
           "price": 2200,
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         },
+        "DTYN|37493|20261220|CLASSIC": {
+          "status": 3,
+          "price": 1000
+        },
         "DTYN|37493|20261220|PRIME": {
           "status": 0,
           "price": 1000,
@@ -1478,10 +1482,6 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "DTYN|37493|20261220|CLASSIC": {
-          "status": 3,
-          "price": 1000
         },
         "DTYN|37658|20261220|RECLINER": {
           "status": 1,
@@ -1517,11 +1517,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37494|20261220|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T16:09:00.924Z"
-        },
         "DTYN|37494|20261220|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
@@ -1530,6 +1525,11 @@
         "DTYN|37494|20261220|CLASSIC": {
           "status": 3,
           "price": 1000
+        },
+        "DTYN|37494|20261220|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T16:09:00.924Z"
         },
         "DTYN|37659|20261220|RECLINER": {
           "status": 3,
@@ -1563,16 +1563,16 @@
           "status": 3,
           "price": 2200
         },
+        "DTYN|37495|20261220|XTRA LEGROOM": {
+          "status": 2,
+          "price": 1000
+        },
         "DTYN|37495|20261220|CLASSIC": {
           "status": 3,
           "price": 1000
         },
         "DTYN|37495|20261220|PRIME": {
           "status": 1,
-          "price": 1000
-        },
-        "DTYN|37495|20261220|XTRA LEGROOM": {
-          "status": 2,
           "price": 1000
         },
         "PGND|44794|20261220|RECLINER": {
@@ -17331,7 +17331,7 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-24T11:35:52.606Z",
+      "lastCheckedAt": "2026-11-24T12:02:09.439Z",
       "lastResult": "141 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -18137,7 +18137,7 @@
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-24T11:35:52.606Z",
+      "lastCheckedAt": "2026-11-24T12:02:09.439Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
@@ -18150,7 +18150,7 @@
       "dates": [],
       "cats": {},
       "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-24T11:35:52.632Z"
+      "lastCheckedAt": "2026-11-24T12:02:09.479Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18194,12 +18194,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37478|20261217|PRIME": {
+        "DTYN|37478|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37478|20261217|XTRA LEGROOM": {
+        "DTYN|37478|20261217|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -18209,12 +18209,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37479|20261217|PRIME": {
+        "DTYN|37479|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37479|20261217|XTRA LEGROOM": {
+        "DTYN|37479|20261217|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -18224,12 +18224,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37480|20261217|XTRA LEGROOM": {
+        "DTYN|37480|20261217|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37480|20261217|PRIME": {
+        "DTYN|37480|20261217|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -18269,27 +18269,27 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37483|20261218|XTRA LEGROOM": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T16:09:00.924Z"
-        },
         "DTYN|37483|20261218|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
+        },
+        "DTYN|37483|20261218|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T16:09:00.924Z"
         },
         "DTYN|37484|20261218|RECLINER": {
           "status": 0,
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37484|20261218|XTRA LEGROOM": {
+        "DTYN|37484|20261218|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37484|20261218|PRIME": {
+        "DTYN|37484|20261218|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -18299,11 +18299,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37485|20261218|PRIME": {
+        "DTYN|37485|20261218|XTRA LEGROOM": {
           "status": 1,
           "price": 1000
         },
-        "DTYN|37485|20261218|XTRA LEGROOM": {
+        "DTYN|37485|20261218|PRIME": {
           "status": 1,
           "price": 1000
         },
@@ -18400,12 +18400,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37492|20261220|XTRA LEGROOM": {
+        "DTYN|37492|20261220|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37492|20261220|PRIME": {
+        "DTYN|37492|20261220|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -18430,37 +18430,37 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37494|20261220|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T16:09:00.924Z"
-        },
         "DTYN|37494|20261220|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
+        "DTYN|37494|20261220|PRIME": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T16:09:00.924Z"
+        },
         "DTYN|37495|20261220|RECLINER": {
           "status": 3,
           "price": 2200
         },
-        "DTYN|37495|20261220|PRIME": {
-          "status": 1,
-          "price": 1000
-        },
         "DTYN|37495|20261220|XTRA LEGROOM": {
           "status": 2,
           "price": 1000
+        },
+        "DTYN|37495|20261220|PRIME": {
+          "status": 1,
+          "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-24T11:35:52.606Z",
+      "lastCheckedAt": "2026-11-24T12:02:09.439Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 21
+    "okStreak": 22
   },
   "meta": {},
   "seats": {}
