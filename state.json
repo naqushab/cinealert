@@ -17,7 +17,7 @@
           "price": 1800
         },
         "DTYN|37625|20261217|PRIME": {
-          "status": 2,
+          "status": 1,
           "price": 2050
         },
         "DTYN|37625|20261217|CLASSIC": {
@@ -495,7 +495,7 @@
           "price": 550
         },
         "USEB|76246|20261217|LUX PLUS": {
-          "status": 3,
+          "status": 2,
           "price": 590
         },
         "WVND|204653|20261217|Classic": {
@@ -653,16 +653,16 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37482|20261218|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
         "DTYN|37482|20261218|CLASSIC": {
           "status": 3,
           "price": 1000
         },
         "DTYN|37482|20261218|PRIME": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-23T05:10:53.658Z"
-        },
-        "DTYN|37482|20261218|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
@@ -928,7 +928,7 @@
           "price": 420
         },
         "IOMG|80069|20261218|Royale Recliners": {
-          "status": 2,
+          "status": 1,
           "price": 800
         },
         "IOMG|80069|20261218|Royale": {
@@ -1190,6 +1190,11 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
+        "DTYN|37490|20261219|XTRA LEGROOM": {
+          "status": 0,
+          "price": 1000,
+          "soldOutSince": "2026-11-24T08:53:27.621Z"
+        },
         "DTYN|37490|20261219|CLASSIC": {
           "status": 3,
           "price": 1000
@@ -1197,11 +1202,6 @@
         "DTYN|37490|20261219|PRIME": {
           "status": 1,
           "price": 1000
-        },
-        "DTYN|37490|20261219|XTRA LEGROOM": {
-          "status": 0,
-          "price": 1000,
-          "soldOutSince": "2026-11-24T08:53:27.621Z"
         },
         "PGND|44789|20261219|RECLINER": {
           "status": 0,
@@ -1302,6 +1302,42 @@
         "WVND|204664|20261219|PLATINUM (PKG)": {
           "status": 3,
           "price": 2400
+        },
+        "IOMG|80072|20261219|Royale Recliners": {
+          "status": 1,
+          "price": 800
+        },
+        "IOMG|80072|20261219|Royale": {
+          "status": 3,
+          "price": 470
+        },
+        "IOMG|80072|20261219|Club": {
+          "status": 3,
+          "price": 420
+        },
+        "IOMG|80074|20261219|Royale Recliners": {
+          "status": 1,
+          "price": 800
+        },
+        "IOMG|80074|20261219|Royale": {
+          "status": 3,
+          "price": 450
+        },
+        "IOMG|80074|20261219|Club": {
+          "status": 3,
+          "price": 420
+        },
+        "IOMG|80075|20261219|Royale Recliners": {
+          "status": 2,
+          "price": 760
+        },
+        "IOMG|80075|20261219|Royale": {
+          "status": 3,
+          "price": 450
+        },
+        "IOMG|80075|20261219|Club": {
+          "status": 3,
+          "price": 420
         },
         "WATG|5370|20261219|Classic": {
           "status": 3,
@@ -1513,7 +1549,7 @@
         },
         "DTYN|37659|20261220|XTRA LEGROOM": {
           "status": 2,
-          "price": 860
+          "price": 960
         },
         "DTYN|37659|20261220|PRIME": {
           "status": 1,
@@ -1710,51 +1746,6 @@
         "WATG|5377|20261220|GOLD RECLINER": {
           "status": 2,
           "price": 800
-        },
-        "IOMG|80072|20261219|Royale Recliners": {
-          "status": 0,
-          "price": 800,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80072|20261219|Royale": {
-          "status": 0,
-          "price": 470,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80072|20261219|Club": {
-          "status": 0,
-          "price": 420,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80074|20261219|Royale Recliners": {
-          "status": 0,
-          "price": 800,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80074|20261219|Royale": {
-          "status": 0,
-          "price": 450,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80074|20261219|Club": {
-          "status": 0,
-          "price": 420,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80075|20261219|Royale Recliners": {
-          "status": 0,
-          "price": 760,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80075|20261219|Royale": {
-          "status": 0,
-          "price": 450,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
-        },
-        "IOMG|80075|20261219|Club": {
-          "status": 0,
-          "price": 420,
-          "soldOutSince": "2026-11-25T10:29:12.520Z"
         },
         "PVVW|67332|20261217|PRIME ROWS": {
           "status": 0,
@@ -17352,7 +17343,7 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-25T10:57:46.621Z",
+      "lastCheckedAt": "2026-11-25T11:26:49.111Z",
       "lastResult": "141 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -18153,25 +18144,25 @@
         }
       },
       "lastCheckedAt": "2026-11-25T10:57:46.621Z",
-      "lastResult": "20 matching show(s), 0 change(s)"
+      "lastResult": "partial check, nothing compared (no data)"
     },
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-25T10:57:46.621Z",
+      "lastCheckedAt": "2026-11-25T11:26:49.111Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
       "dates": [],
       "cats": {},
       "lastCheckedAt": "2026-11-25T10:57:46.621Z",
-      "lastResult": "0 matching show(s), 0 change(s)"
+      "lastResult": "partial check, nothing compared (no data)"
     },
     "doomsday-seats-noida": {
       "dates": [],
       "cats": {},
-      "lastResult": "seats: 20 show(s), 20 seat map(s) read, 20 unreadable, 0 new hit(s)",
-      "lastCheckedAt": "2026-11-25T11:05:20.381Z"
+      "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
+      "lastCheckedAt": "2026-11-25T11:26:49.169Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18275,12 +18266,12 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37482|20261218|PRIME": {
+        "DTYN|37482|20261218|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37482|20261218|XTRA LEGROOM": {
+        "DTYN|37482|20261218|PRIME": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
@@ -18393,14 +18384,14 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T12:18:21.477Z"
         },
-        "DTYN|37490|20261219|PRIME": {
-          "status": 1,
-          "price": 1000
-        },
         "DTYN|37490|20261219|XTRA LEGROOM": {
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-24T08:53:27.621Z"
+        },
+        "DTYN|37490|20261219|PRIME": {
+          "status": 1,
+          "price": 1000
         },
         "DTYN|37491|20261220|RECLINER": {
           "status": 0,
@@ -18474,14 +18465,14 @@
           "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-25T10:57:46.621Z",
+      "lastCheckedAt": "2026-11-25T11:26:49.111Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 73
+    "okStreak": 74
   },
   "meta": {
     "lastSummary": "2026-11-24"
