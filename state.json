@@ -81,7 +81,7 @@
           "price": 1800
         },
         "PVLE|80579|20261218|CLASSIC": {
-          "status": 2,
+          "status": 3,
           "price": 1400
         },
         "PVLE|80580|20261218|CLASSIC": {
@@ -109,7 +109,7 @@
           "price": 1300
         },
         "PVLE|80843|20261220|CLASSIC": {
-          "status": 2,
+          "status": 3,
           "price": 1600
         },
         "PVLE|80845|20261220|CLASSIC": {
@@ -206,9 +206,8 @@
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
         "DTYN|37633|20261217|RECLINER": {
-          "status": 0,
-          "price": 2100,
-          "soldOutSince": "2026-11-26T12:40:55.549Z"
+          "status": 1,
+          "price": 2100
         },
         "DTYN|37633|20261217|XTRA LEGROOM": {
           "status": 0,
@@ -981,8 +980,9 @@
           "price": 800
         },
         "DTYN|37665|20261219|XTRA LEGROOM": {
-          "status": 1,
-          "price": 810
+          "status": 0,
+          "price": 810,
+          "soldOutSince": "2026-11-26T13:07:55.532Z"
         },
         "DTYN|37665|20261219|PRIME": {
           "status": 0,
@@ -1469,7 +1469,7 @@
         },
         "DTYN|37657|20261220|CLASSIC": {
           "status": 3,
-          "price": 640
+          "price": 690
         },
         "DTYN|37672|20261220|XTRA LEGROOM": {
           "status": 0,
@@ -17352,7 +17352,7 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-26T13:01:42.616Z",
+      "lastCheckedAt": "2026-11-26T13:36:26.135Z",
       "lastResult": "141 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -17445,7 +17445,7 @@
         },
         "D1024414|80582|20261218|CLASSIC": {
           "status": 3,
-          "price": 1700
+          "price": 1800
         },
         "D1024414|80837|20261219|CLASSIC": {
           "status": 3,
@@ -18152,26 +18152,26 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-26T06:47:56.575Z",
-      "lastResult": "partial check, nothing compared (no data)"
+      "lastCheckedAt": "2026-11-26T13:36:26.135Z",
+      "lastResult": "20 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-26T13:01:42.616Z",
+      "lastCheckedAt": "2026-11-26T13:36:26.135Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-26T06:47:56.575Z",
-      "lastResult": "partial check, nothing compared (no data)"
+      "lastCheckedAt": "2026-11-26T13:36:26.135Z",
+      "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-seats-noida": {
       "dates": [],
       "cats": {},
-      "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-26T13:01:42.659Z"
+      "lastResult": "seats: 20 show(s), 20 seat map(s) read, 20 unreadable, 0 new hit(s)",
+      "lastCheckedAt": "2026-11-26T13:43:57.281Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18475,14 +18475,14 @@
           "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-26T13:01:42.616Z",
+      "lastCheckedAt": "2026-11-26T13:36:26.135Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 123
+    "okStreak": 124
   },
   "meta": {
     "lastSummary": "2026-11-25"
