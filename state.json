@@ -53,7 +53,7 @@
           "price": 1800
         },
         "PVLE|80440|20261217|CLASSIC": {
-          "status": 2,
+          "status": 3,
           "price": 1700
         },
         "DTYN|37675|20261218|PRIME": {
@@ -481,7 +481,7 @@
           "price": 550
         },
         "USEB|76244|20261217|LUX PLUS": {
-          "status": 1,
+          "status": 2,
           "price": 590
         },
         "USEB|76245|20261217|LUX": {
@@ -1000,10 +1000,6 @@
           "price": 2200,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
         },
-        "DTYN|37486|20261219|CLASSIC": {
-          "status": 3,
-          "price": 1000
-        },
         "DTYN|37486|20261219|PRIME": {
           "status": 0,
           "price": 1000,
@@ -1013,6 +1009,10 @@
           "status": 0,
           "price": 1000,
           "soldOutSince": "2026-11-23T05:10:53.658Z"
+        },
+        "DTYN|37486|20261219|CLASSIC": {
+          "status": 3,
+          "price": 1000
         },
         "DTYN|37652|20261219|RECLINER": {
           "status": 0,
@@ -17360,7 +17360,7 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-27T19:11:26.785Z",
+      "lastCheckedAt": "2026-11-27T19:37:32.632Z",
       "lastResult": "141 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -18166,7 +18166,7 @@
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-27T19:11:26.785Z",
+      "lastCheckedAt": "2026-11-27T19:37:32.632Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
@@ -18179,7 +18179,7 @@
       "dates": [],
       "cats": {},
       "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-27T19:11:26.821Z"
+      "lastCheckedAt": "2026-11-27T19:37:32.677Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18484,14 +18484,14 @@
           "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-27T19:11:26.785Z",
+      "lastCheckedAt": "2026-11-27T19:37:32.632Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 188
+    "okStreak": 189
   },
   "meta": {
     "lastSummary": "2026-11-27"
