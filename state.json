@@ -473,7 +473,7 @@
           "price": 550
         },
         "USEB|76243|20261217|LUX PLUS": {
-          "status": 2,
+          "status": 1,
           "price": 590
         },
         "USEB|76244|20261217|LUX": {
@@ -1646,7 +1646,7 @@
           "price": 670
         },
         "PGND|44797|20261220|RECLINER": {
-          "status": 1,
+          "status": 2,
           "price": 1120
         },
         "PGND|44797|20261220|PRIME": {
@@ -17361,7 +17361,7 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-28T06:26:12.787Z",
+      "lastCheckedAt": "2026-11-28T06:52:16.773Z",
       "lastResult": "141 matching show(s), 0 change(s)"
     },
     "doomsday-ncr-district": {
@@ -18168,7 +18168,7 @@
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-28T06:26:12.787Z",
+      "lastCheckedAt": "2026-11-28T06:52:16.773Z",
       "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-district": {
@@ -18181,7 +18181,7 @@
       "dates": [],
       "cats": {},
       "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-28T06:26:12.823Z"
+      "lastCheckedAt": "2026-11-28T06:52:16.817Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18486,14 +18486,14 @@
           "price": 1000
         }
       },
-      "lastCheckedAt": "2026-11-28T06:26:12.787Z",
+      "lastCheckedAt": "2026-11-28T06:52:16.773Z",
       "lastResult": "20 matching show(s), 0 change(s)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 213
+    "okStreak": 214
   },
   "meta": {
     "lastSummary": "2026-11-27"
