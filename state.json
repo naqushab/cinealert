@@ -17361,7 +17361,7 @@
         }
       },
       "lastCheckedAt": "2026-11-28T04:04:12.430Z",
-      "lastResult": "141 matching show(s), 0 change(s)"
+      "lastResult": "partial check, nothing compared (no data)"
     },
     "doomsday-ncr-district": {
       "dates": [
@@ -17457,7 +17457,7 @@
         },
         "D1024414|80838|20261219|CLASSIC": {
           "status": 3,
-          "price": 1600
+          "price": 1700
         },
         "D1024414|80840|20261219|CLASSIC": {
           "status": 3,
@@ -18161,26 +18161,26 @@
           "soldOutSince": "2026-11-24T05:48:50.356Z"
         }
       },
-      "lastCheckedAt": "2026-11-27T20:11:38.128Z",
-      "lastResult": "partial check, nothing compared (no data)"
+      "lastCheckedAt": "2026-11-28T04:30:34.791Z",
+      "lastResult": "20 matching show(s), 0 change(s)"
     },
     "doomsday-dtyn-pxl-bms": {
       "dates": [],
       "cats": {},
       "lastCheckedAt": "2026-11-28T04:04:12.430Z",
-      "lastResult": "0 matching show(s), 0 change(s)"
+      "lastResult": "partial check, nothing compared (no data)"
     },
     "doomsday-dtyn-pxl-district": {
       "dates": [],
       "cats": {},
-      "lastCheckedAt": "2026-11-27T20:11:38.128Z",
-      "lastResult": "partial check, nothing compared (no data)"
+      "lastCheckedAt": "2026-11-28T04:30:34.791Z",
+      "lastResult": "0 matching show(s), 0 change(s)"
     },
     "doomsday-seats-noida": {
       "dates": [],
       "cats": {},
-      "lastResult": "seats: 20 matching show(s) on BookMyShow, but District is unreadable from this network (no data), so seat maps can't be checked",
-      "lastCheckedAt": "2026-11-28T04:04:12.474Z"
+      "lastResult": "seats: BookMyShow unreadable (no data)",
+      "lastCheckedAt": "2026-11-28T04:30:34.806Z"
     },
     "doomsday-seats-noida-classes": {
       "dates": [
@@ -18486,13 +18486,13 @@
         }
       },
       "lastCheckedAt": "2026-11-28T04:04:12.430Z",
-      "lastResult": "20 matching show(s), 0 change(s)"
+      "lastResult": "partial check, nothing compared (no data)"
     }
   },
   "health": {
     "fails": 0,
     "warned": false,
-    "okStreak": 208
+    "okStreak": 209
   },
   "meta": {
     "lastSummary": "2026-11-27"
